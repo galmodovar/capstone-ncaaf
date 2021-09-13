@@ -13,9 +13,14 @@ export const Football = () => (
         if (localStorage.getItem("ncaaf_user")) {
           return (
             <>
+            <div className='container'>
+
+            <h1>NCAA Football</h1>  
               <NavBar />
-            <h1>NCAA Football</h1>
               <ApplicationViews />
+            </div>
+\              
+              
             </>
           );
         } else {

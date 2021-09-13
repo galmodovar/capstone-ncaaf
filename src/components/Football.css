@@ -3,12 +3,13 @@
 
 /*Typography
 --------------------------------------------------------------*/
+
 body,
 button,
 input,
 select,
 textarea {
-  color: #404040;
+  color: #383535;
   font-family: "Comfortaa", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
@@ -22,3 +23,16 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-bottom: 1.5em;
 }
+
+h1 {
+  background-color: rgb(20, 34, 20);
+  margin-top: 0px;
+}
+
+.container {
+  background-image: url(./capstone-imgs/footballMain.jpg);
+  background-size: cover;
+  height: 100vh;
+  color: #666060;
+}
+
