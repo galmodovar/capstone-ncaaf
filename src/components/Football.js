@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect,Link } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./nav/NavBar";
 import { Login } from "./auth/Login";
@@ -15,11 +15,18 @@ export const Football = () => (
             <>
             <div className='container'>
 
-            <h1>NCAA Football</h1>  
+            <Link className="main-page"
+                                to={{
+                                    pathname: `/`,
+                                }}>
+                                <h1>NCAA Football</h1>
+                            </Link>
+
+            {/* <h1>NCAA Football</h1>   */}
               <NavBar />
               <ApplicationViews />
             </div>
-\              
+             
               
             </>
           );
