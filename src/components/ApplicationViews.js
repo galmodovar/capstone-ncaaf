@@ -1,5 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { MainFeed } from "./news/MainNews"
+import { NewsFeed } from "./news/News"
 
 
 
@@ -9,9 +11,12 @@ import { Route } from "react-router-dom"
 export const ApplicationViews = () => {
     return (
         <>
-            
+            <Route exact path="/">
+                <MainFeed />
+            </Route>
 
             <Route exact path="/news">
+                <NewsFeed />
             </Route>
 
             <Route exact path="/scores">

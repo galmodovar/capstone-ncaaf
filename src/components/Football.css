@@ -32,7 +32,11 @@ h1 {
 .container {
   background-image: url(./capstone-imgs/footballMain.jpg);
   background-size: cover;
-  height: 100vh;
-  color: #666060;
+  min-height: 100vh;
+  color: #29280b;
+}
+
+.mainContainer {
+  display: flex;
 }
 
