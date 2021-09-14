@@ -2,7 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = (props) => {
+export const NavBar = () => {
+    const currentUser = localStorage.getItem("ncaaf_user")
     return (
         <ul className="navbar">
             <li className="navbar__item active">
@@ -15,7 +16,10 @@ export const NavBar = (props) => {
                 <Link className="navbar__link" to="/sports">Scores</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/users">Users</Link>
+                <Link className="navbar__link" to="/weeklyChallenge">Weekly Challenge</Link>
+            </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to={`/myTeams/${currentUser}`}>My Teams</Link>
             </li>
             <li className="navbar__item active">
                 <Link className="navbar__link" to="" onClick={

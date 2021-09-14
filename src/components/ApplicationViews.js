@@ -1,7 +1,9 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { MyTeams } from "./myTeams/MyTeams"
 import { MainFeed } from "./news/MainNews"
 import { NewsFeed } from "./news/News"
+import { LeaderBoard } from "./scores/Leaderboard"
 import { Teams } from "./team/Teams"
 
 
@@ -25,9 +27,14 @@ export const ApplicationViews = () => {
                 <Teams />
             </Route>
 
-            <Route exact path="/users">
+            <Route exact path="/weeklyChallenge">
+                <LeaderBoard />
             </Route>
-                    <Route exact path="/myTeams">
+
+            <Route exact path="/myTeams/:userId">
+                <MyTeams />
+            </Route>
+                    <Route exact path="/">
                     </Route>
 
  

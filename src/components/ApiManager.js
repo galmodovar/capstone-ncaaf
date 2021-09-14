@@ -8,9 +8,11 @@ export const getAllUsers = () => {
 }
 
 export const getMyTeams = () => {
-    return fetch(`http://localhost:8088/myTeams`)
+    const userId = localStorage.getItem("ncaaf_user")
+    return fetch(`http://localhost:8088/myTeams?userId=${userId}`)
         .then(res => res.json())
 }
+
 
 
 

@@ -5,7 +5,6 @@ import "./Teams.css"
 export const Teams = () => {
     const [allTeams, updateTeams] = useState()
     const [teamList, setTeams] = useState([])
-    //const [totalCustomerMessage, updateMessage] = useState("")
 
     useEffect(
         () => {
@@ -20,9 +19,6 @@ export const Teams = () => {
      useEffect(
          () => {
             setTeams(allTeams?.sports[0].leagues[0])
-
-            
-        
     },
          [allTeams]
      )
@@ -41,7 +37,7 @@ export const Teams = () => {
               teamList?.teams?.map(
                  (teamObject ) => {
                      
-                    return <p key={`team--${teamObject.id}`}>  <img src={teamObject.team.logos[1].href} className="teamsList"/> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary} 
+                    return <p key={`team--${teamObject.team.id}`}>  <img src={teamObject.team.logos[1].href} className="teamsList"/> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary} 
                              <button onClick={() => {}} className="team-btn">Add Team</button> </p>
                     }
                 )
