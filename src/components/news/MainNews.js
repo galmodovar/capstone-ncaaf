@@ -5,25 +5,25 @@ export const MainFeed = () => {
     const [headlines, updateHeadlines] = useState([])
     const [topScores, updateScores] = useState([])
 
-    useEffect(
-        () => {
-            getAllNews()
-                .then((data) => {
-                    updateHeadlines(data)
-                })
-        },
-        []
-    )
+    // useEffect(
+    //     () => {
+    //         getAllNews()
+    //             .then((data) => {
+    //                 updateHeadlines(data)
+    //             })
+    //     },
+    //     []
+    // )
 
-    useEffect(
-        () => {
-            getAllScores()
-                .then((data) => {
-                    updateScores(data)
-                })
-        },
-        []
-    )
+    // useEffect(
+    //     () => {
+    //         getAllScores()
+    //             .then((data) => {
+    //                 updateScores(data)
+    //             })
+    //     },
+    //     []
+    // )
 
 
     return (

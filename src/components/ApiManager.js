@@ -27,6 +27,11 @@ export const getAllTeams = () => {
         .then(res => res.json())
 }
 
+export const getAllConferences = () => {
+    return fetch(`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard/conferences?groups=80`)
+        .then(res => res.json())
+}
+
 export const getAllRankings = () => {
     return fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings`)
         .then(res => res.json())

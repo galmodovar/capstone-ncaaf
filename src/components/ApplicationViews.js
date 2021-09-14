@@ -2,6 +2,8 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { MainFeed } from "./news/MainNews"
 import { NewsFeed } from "./news/News"
+import { Teams } from "./team/Teams"
+
 
 
 
@@ -19,12 +21,13 @@ export const ApplicationViews = () => {
                 <NewsFeed />
             </Route>
 
-            <Route exact path="/scores">
+            <Route exact path="/teams">
+                <Teams />
             </Route>
 
             <Route exact path="/users">
             </Route>
-                    <Route exact path="/teams">
+                    <Route exact path="/myTeams">
                     </Route>
 
  

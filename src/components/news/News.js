@@ -5,15 +5,15 @@ export const NewsFeed = () => {
     const [headlines, updateHeadlines] = useState([])
     //const [totalCustomerMessage, updateMessage] = useState("")
 
-    useEffect(
-        () => {
-            getAllNews()
-                .then((data) => {
-                    updateHeadlines(data)
-                })
-        },
-        []
-    )
+    // useEffect(
+    //     () => {
+    //         getAllNews()
+    //             .then((data) => {
+    //                 updateHeadlines(data)
+    //             })
+    //     },
+    //     []
+    // )
 
 
     return (
