@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { getAllTeams } from "../ApiManager"
+import "./Teams.css"
 
 export const Teams = () => {
     const [allTeams, updateTeams] = useState()
@@ -35,13 +36,17 @@ export const Teams = () => {
         <>
             <h3> Team List:</h3>
 
+            <section className="teamContainer">
            { 
               teamList?.teams?.map(
-                 (teamObject, index ) => {
-                    return <p key={`headline--`}> {teamObject.team.name} </p>
-                 }
-             )
-        }  
+                 (teamObject ) => {
+                     
+                    return <p key={`team--${teamObject.id}`}>  <img src={teamObject.team.logos[1].href} className="teamsList"/> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary} 
+                             <button onClick={() => {}} className="team-btn">Add Team</button> </p>
+                    }
+                )
+            }
+            </section>  
          
            
         </>
