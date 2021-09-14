@@ -1,0 +1,30 @@
+.teamsList {
+    max-height: 2.5rem ;
+}
+
+.teamContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 400px);
+}
+
+p {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-inline-size: 20rem;
+    max-block-size: 2rem;
+}
+
+.team-btn {
+    transition-duration: 0.4s;
+    background-color: slategray;
+    font-size: xx-small;
+    max-inline-size: 3rem;
+    
+}
+
+.team-btn:hover {
+    background-color: darkgreen;
+    color: slategray
+}
