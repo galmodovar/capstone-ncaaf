@@ -29,11 +29,11 @@ export const Scoreboard = () => {
         <>
             <main className="mainContainer">
                 <section className="scoreContainer">
-                    <h3> Week {topScores.week?.number} Latest Scores:</h3>
+                    <h3> Week {topScores.week?.number} Schedule:</h3>
                     {
                         topScores.events?.map(
                         (scoreObject) => {
-                        return <p key={`score--`}> {scoreObject.date}  {scoreObject.name} </p>
+                        return <p key={`score--${scoreObject.id}`}> {scoreObject.date}  {scoreObject.name} </p>
                         }
                         )
                     }
@@ -56,7 +56,8 @@ export const Scoreboard = () => {
                     {
                         pastScores?.events?.map(
                         (scoreObject) => {
-                        return <p key={`score--`}> {scoreObject.date}  {scoreObject.name} </p>
+                        return <p key={`score--${scoreObject.id}`}> {scoreObject.date}  
+                        {scoreObject?.competitions[0].competitors[0].team.name} {scoreObject?.competitions[0].competitors[0].score} {scoreObject?.competitions[0].competitors[1].team.name} {scoreObject?.competitions[0].competitors[1].score}</p>
                         })
                     }
                 </section> 
