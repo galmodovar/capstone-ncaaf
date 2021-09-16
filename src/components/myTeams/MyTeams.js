@@ -99,7 +99,7 @@ useEffect(() => {
         }, [pastScores] )
 
 useEffect( () => {
-        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week}`)
+        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week}&limit=100`)
             .then(res => res.json())
             .then((data) => {
                 updatePastScores(data)
