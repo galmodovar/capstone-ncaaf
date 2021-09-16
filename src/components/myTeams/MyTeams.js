@@ -45,7 +45,7 @@ export const MyTeams = () => {
                     })
                 })
         },
-        [  ]
+        []
     )
 
     useEffect(() => {
@@ -53,13 +53,13 @@ export const MyTeams = () => {
         setUserTeams(allTeams)
     }, [myTeams] )
 
-    useEffect(() => {
-        const events = teamScores?.events?.map(event => event.competitions[0].competitors)
-        const myTeamScores = events?.filter((game) => {
-            for (const a of game ) {
-                for (const myTeam of myTeams) {
-                  if (parseInt(a.team.id) === myTeam.teamId) {
-                      return a
+useEffect(() => {
+    const events = teamScores?.events?.map(event => event.competitions[0].competitors)
+    const myTeamScores = events?.filter((game) => {
+        for (const a of game ) {
+            for (const myTeam of myTeams) {
+                if (parseInt(a.team.id) === myTeam.teamId) {
+                    return a
                   }  
                 } 
                 

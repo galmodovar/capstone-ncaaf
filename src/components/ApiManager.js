@@ -45,7 +45,7 @@ export const getAllRankings = () => {
 }
 
 export const getAllScores = () => {
-    return fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard`)
+    return fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=100`)
         .then(res => res.json())
 }
 
