@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { getMyTeams, getAllTeams, getAllScores } from '../ApiManager'
 
 export const MyTeams = () => {
-    const [myTeams, setTeams] = useState([])
     const [teamList, updateTeams] = useState()
-    const [teamsArr, simplifyTeams] = useState()
-    const [userTeams, setUserTeams] = useState([])
     const [teamScores, setTeamScores] = useState([])
+    const [myTeams, setTeams] = useState([])
+    const [userTeams, setUserTeams] = useState([])
     const [userTeamScores, setUserTeamScores] = useState([])
-    const [pastUserTeamScores, setUserTeamPastScores] = useState([])
     const [pastScores, updatePastScores] = useState([])
-    const [week, setWeek] = useState(0)
-    const { userId }  = useParams()
+    const [week, setWeek] = useState()
 
     useEffect(
         () => {
             getAllTeams()
                 .then((data) => {
-                    updateTeams(data)
+                    updateTeams(data.sports[0].leagues[0])
                 })
         },
-        [userId]
+        []
     )
     useEffect(
         () => {
@@ -32,12 +28,7 @@ export const MyTeams = () => {
         },
         []
     )
-    useEffect(
-        () => {
-           simplifyTeams(teamList?.sports[0].leagues[0])
-   },
-        [teamList]
-    )
+
     useEffect(
         () => {
             getAllScores()
@@ -45,7 +36,7 @@ export const MyTeams = () => {
                 () => getMyTeams())
                 .then(
                     (data) => {
-                    const week = data.map(newData => {
+                    const currentWeek = data.map(newData => {
                         if (newData.week === teamScores?.week?.number) {
                             setTeams(newData)
                         } else {
@@ -58,7 +49,7 @@ export const MyTeams = () => {
     )
 
     useEffect(() => {
-        const allTeams = teamsArr?.teams?.filter((filterTeam) => !!myTeams.some(myTeam => parseInt(filterTeam.team.id) === myTeam.teamId))
+        const allTeams = teamList?.teams?.filter((filterTeam) => !!myTeams.some(myTeam => parseInt(filterTeam.team.id) === myTeam.teamId))
         setUserTeams(allTeams)
     }, [myTeams] )
 
@@ -98,6 +89,22 @@ useEffect(() => {
 
         }, [pastScores] )
 
+
+const removeTeam = (id) => {
+    fetch(`http://localhost:8088/myTeams/${id}`, {
+        method: "DELETE"
+        })
+        .then(() => {
+            const userId = localStorage.getItem("ncaaf_user")
+            fetch(`http://localhost:8088/myTeams?userId=${userId}&_expand=user`)
+            .then(res => res.json())
+            .then((data) => {
+                setTeams(data)
+            })
+            }
+        )
+    }
+
 useEffect( () => {
         fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week}&limit=100`)
             .then(res => res.json())
@@ -111,13 +118,20 @@ useEffect( () => {
 
     return (
         <>
+        <main className="mainContainer">
             <section className="teamsGameWeek">
             <h2>My Teams</h2>
             {
                 userTeams?.map(
                     (teamObject) => {
+
                         return <p key={`team--${teamObject.team.id}`}>  <img src={teamObject.team.logos[1].href} className="teamsList"/> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary} 
-                        <button onClick={() => {}} className="team-btn">Remove Team</button> </p>
+                        <button onClick={() => {
+                            const team = myTeams.find(team => {
+                                if (team.teamId === parseInt(teamObject.team.id)) {
+                                    return team.id
+                                }})
+                            removeTeam(team.id)}} className="team-btn">Remove Team</button> </p>
                     }
                 )
             }
@@ -147,6 +161,7 @@ useEffect( () => {
                 )
             }
             </section>
+            </main>
         </>
     )
 }
