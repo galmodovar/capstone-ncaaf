@@ -40,9 +40,18 @@ export const MyTeams = () => {
     )
     useEffect(
         () => {
-            getMyTeams()
-                .then((data) => {
-                    setTeams(data)
+            getAllScores()
+            .then(
+                () => getMyTeams())
+                .then(
+                    (data) => {
+                    const week = data.map(newData => {
+                        if (newData.week === teamScores?.week?.number) {
+                            setTeams(newData)
+                        } else {
+                            setTeams(data)
+                        }
+                    })
                 })
         },
         [  ]
@@ -69,9 +78,9 @@ export const MyTeams = () => {
         const userScores = scores?.filter((filterTeam => !!myTeams.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
         setUserTeamScores(userScores)
 
-        }, [teamScores, myTeams] )
+        }, [myTeams] )
     
-  useEffect(() => {
+useEffect(() => {
         const events = pastScores?.events?.map(event => event.competitions[0].competitors)
         const myTeamScores = events?.filter((game) => {
             for (const a of game ) {
@@ -85,12 +94,12 @@ export const MyTeams = () => {
         })
         const scores = myTeamScores?.flat()
         const userScores = scores?.filter((filterTeam => !!myTeams.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
-        setUserTeamPastScores(userScores)
+        setUserTeamScores(userScores)
 
-        }, [pastScores, myTeams] )
+        }, [pastScores] )
 
-    useEffect( () => {
-        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?week=${week}`)
+useEffect( () => {
+        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week}`)
             .then(res => res.json())
             .then((data) => {
                 updatePastScores(data)
@@ -114,18 +123,7 @@ export const MyTeams = () => {
             }
             <h3>You have {myTeams.length} teams on your roster for the week.</h3>
             </section>
-            <section className="teamsGameWeek">
-            <h2>My Teams</h2>
-            {
-                userTeamScores?.map(
-                    (teamObject) => {
-                        return <p key={`team--${teamObject.id}`}>  <img src={teamObject.team.logo} className="teamsList"/> {teamObject.team.displayName} {teamObject.score} </p>
-                    }
-                )
-            }
-            <h3>You have {myTeams.length} teams on your roster for the week.</h3>
-            </section>
-            {/* <section className="scoreContainer">
+            <section className="scoreContainer">
                     <h3> Past Scores:</h3>
                      <select className="week__dropdown" onChange={
                         (event) => {
@@ -139,16 +137,16 @@ export const MyTeams = () => {
                                 }
                     </select>
                 </section>
-                <section className="scoreContainer">
-                    {
-                        pastUserTeamScores?.events?.map(
-                        (scoreObject) => {
-                        return <p key={`score--${scoreObject.id}`}> {scoreObject.date}  
-                        {scoreObject?.competitions[0].competitors[0].team.name} {scoreObject?.competitions[0].competitors[0].score} {scoreObject?.competitions[0].competitors[1].team.name} {scoreObject?.competitions[0].competitors[1].score}</p>
-                        })
+            <section className="teamsGameWeek">
+            <h2>Team Scores</h2>
+            {
+                userTeamScores?.map(
+                    (teamObject) => {
+                        return <p key={`team--${teamObject.id}`}>  <img src={teamObject.team.logo} className="teamsList"/> {teamObject.team.displayName} {teamObject.score} </p>
                     }
-                </section>  */}
-
+                )
+            }
+            </section>
         </>
     )
 }
