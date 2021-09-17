@@ -60,7 +60,7 @@ export const Teams = () => {
         <>
             <h3> Team List:</h3>
 
-            <section className="teamContainer">
+         <section className="teamContainer">
            { 
               teamList?.teams?.map(
                  (teamObject ) => {
@@ -70,7 +70,8 @@ export const Teams = () => {
                     }
                 )
             }
-            </section>  
+            </section>   
+
          
            
         </>

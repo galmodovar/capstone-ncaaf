@@ -9,7 +9,9 @@ export const LeaderBoard = () => {
     const [userTeamScores, setUserTeamScores] = useState([])
     const [localTeamScores, setLocalTeamScores] = useState([])
     const [localTeamArr, setUserTeams] = useState([])
-    const [myTeams, setMyTeams] = useState(new Map())
+    const [totals, setTotal] = useState(0)
+    const [groupTeams, setGroupTeams] = useState({})
+    const [chosenTeams, updateTeams] = useState({})
     const userId = localStorage.getItem("ncaaf_user")
 
     useEffect(
@@ -88,10 +90,58 @@ export const LeaderBoard = () => {
 
 
     useEffect(() => {
-        const teamArr = Array.from(new Set(localTeamsList.map(a => a.userId))).map(id => {return localTeamsList.find(a => a.userId === id)
- })
+        const teamArr = Array.from(new Set(localTeamsList.map(a => a.userId))).map(id => {
+            return localTeamsList.find(a => a.userId === id)
+        })
         setUserTeams(teamArr)
-    }, [localTeamsList] )
+    }, [localTeamsList, localTeamScores])
+
+    useEffect(
+        () => {
+            const scores = localTeamScores?.filter(team => localTeamsList.includes(parseInt(team.id))).map(team => parseInt(team.score))
+            setTotal(scores)
+        },
+        [localTeamScores]
+    )
+
+    useEffect(
+        () => {
+            const score = userTeamScores?.reduce(
+                (sum, currentScore) => {
+                    return sum + parseInt(currentScore.score)
+                }
+                , 0
+            )
+            setTotal(score)
+        },
+        [userTeamScores]
+    )
+
+    
+    useEffect(
+        () => {
+            localTeamsList?.map(teamObject => {
+            updateTeamState("team", teamObject.id)
+            buildTeamObject("teamId", teamObject.teamId)   
+            })
+        },
+        [localTeamsList]
+    )
+  
+    const buildTeamObject = (idToModify, newValue) => {
+        const newTeams = { ...groupTeams }
+        newTeams[idToModify] = newValue
+        setGroupTeams(newTeams)
+    }
+    
+    
+    
+    const updateTeamState = (propToModify, newValue) => {
+        const newObject = { ...chosenTeams }  // Copy of state
+        newObject[propToModify] = newValue
+        updateTeams(newObject)              // Update state with copy
+    }
+
 
     return (
         <>
@@ -106,24 +156,25 @@ export const LeaderBoard = () => {
                         )
                     }
                     <h3>You have {teamsList.length} teams on your roster for the week.</h3>
+                    <h3>Current score for the week {totals}</h3>
                 </section>
                 <section className="localTeamContainer">
                     <h2>Current Scores</h2>
                     {
                         localTeamScores?.map(
                             (teamObject) => {
-                                    return <p key={`team--${teamObject.team.id}`}> <img src={teamObject.team.logo} className="teamsList" /> {teamObject.team.displayName} {teamObject.score} </p> 
+                                return <p key={`team--${teamObject.team.id}`}> <img src={teamObject.team.logo} className="teamsList" /> {teamObject.team.displayName} {teamObject.score} </p>
                             }
                         )
                     }
                 </section>
                 <section className="leaderContainer">
                     <h2>LeaderBoard</h2>
-                            {
-                                localTeamArr?.map(team => {
-                                    return <p>{team.user.name}</p>
-                                    })   
-                            }
+                    {
+                        localTeamArr?.map(team => {
+                            return <p>{team.user.name}</p>
+                        })
+                    }
                 </section>
             </main>
 
