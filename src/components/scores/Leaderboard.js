@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getMyTeams, getAllLocalTeams, getAllScores } from '../ApiManager'
+import "./Leaderboard.css";
 
 export const LeaderBoard = () => {
     const [teamsList, setTeams] = useState([])
@@ -9,9 +10,12 @@ export const LeaderBoard = () => {
     const [userTeamScores, setUserTeamScores] = useState([])
     const [localTeamScores, setLocalTeamScores] = useState([])
     const [localTeamArr, setUserTeams] = useState([])
-    const [totals, setTotal] = useState(0)
-    const [groupTeams, setGroupTeams] = useState({})
-    const [chosenTeams, updateTeams] = useState({})
+    const [userGroups, setUserGroups] = useState()
+    const [totals, setTotal] = useState([])
+    const [total, setTotals] = useState(0) 
+    const [totalsArr, setTotalScoresArr] = useState()
+    // const [groupTeams, setGroupTeams] = useState({})
+    // const [chosenTeams, updateTeams] = useState({})
     const userId = localStorage.getItem("ncaaf_user")
 
     useEffect(
@@ -112,35 +116,88 @@ export const LeaderBoard = () => {
                 }
                 , 0
             )
-            setTotal(score)
+            setTotals(score)
         },
         [userTeamScores]
     )
-
     
     useEffect(
         () => {
-            localTeamsList?.map(teamObject => {
-            updateTeamState("team", teamObject.id)
-            buildTeamObject("teamId", teamObject.teamId)   
-            })
+            const score = localTeamsList?.reduce(
+                (acc, item) => {
+                    acc[item.userId] = (acc[item.userId] || [])
+                    acc[item.userId].push(item)
+                    return acc
+                }, []
+            )
+            setUserGroups(score)
         },
         [localTeamsList]
     )
+
+    useEffect(
+        () => {
+            let score = []
+            userGroups?.map(item =>
+                item.map(a => {
+                   localTeamScores?.filter((team) => {
+                       if (parseInt(team.id) === a.teamId) {
+                           let arr = []
+                           arr.id = a.userId
+                           arr.name = a.user.name
+                           arr.teamId = a.teamId
+                           arr.score = parseInt(team.score)
+                           score.push(arr)
+                        }
+                    })
+                    
+                }
+                )
+                )            
+                setTotal(score);
+            },
+        [localTeamScores, userGroups]
+    )
+    
+
+    
+    // useEffect(
+    //     () => {
+    //         localTeamsList?.map(teamObject => {
+    //         updateTeamState("team", teamObject.id)
+    //         buildTeamObject("teamId", teamObject.teamId)   
+    //         })
+    //     },
+    //     [localTeamsList]
+    // )
   
-    const buildTeamObject = (idToModify, newValue) => {
-        const newTeams = { ...groupTeams }
-        newTeams[idToModify] = newValue
-        setGroupTeams(newTeams)
-    }
+    // const buildTeamObject = (idToModify, newValue) => {
+    //     const newTeams = { ...groupTeams }
+    //     newTeams[idToModify] = newValue
+    //     setGroupTeams(newTeams)
+    // }
     
     
     
-    const updateTeamState = (propToModify, newValue) => {
-        const newObject = { ...chosenTeams }  // Copy of state
-        newObject[propToModify] = newValue
-        updateTeams(newObject)              // Update state with copy
-    }
+    // const updateTeamState = (propToModify, newValue) => {
+    //     const newObject = { ...chosenTeams }  // Copy of state
+    //     newObject[propToModify] = newValue
+    //     updateTeams(newObject)              // Update state with copy
+    // }
+
+    useEffect(
+        () => {
+        const totalScores = totals?.reduce((a, {id, score}) => (a[id] = (a[id] || 0) + +score, a), []);
+        //const sortScores =  totalScores.sort((a, b) => b - a)
+        setTotalScoresArr(totalScores)
+        }, [totals] )
+    
+
+
+    
+
+
+
 
 
     return (
@@ -156,7 +213,7 @@ export const LeaderBoard = () => {
                         )
                     }
                     <h3>You have {teamsList.length} teams on your roster for the week.</h3>
-                    <h3>Current score for the week {totals}</h3>
+                    <h3>Current score for the week {total}</h3>
                 </section>
                 <section className="localTeamContainer">
                     <h2>Current Scores</h2>
@@ -169,11 +226,20 @@ export const LeaderBoard = () => {
                     }
                 </section>
                 <section className="leaderContainer">
-                    <h2>LeaderBoard</h2>
+                <h2>LeaderBoard</h2>
                     {
-                        localTeamArr?.map(team => {
-                            return <p>{team.user.name}</p>
-                        })
+                        localTeamArr?.map((team) => {
+                                 return <p>{totalsArr?.map((score, i) => {
+                                    if (team.userId === i) {
+                                        
+                                        return  `${team.user.name} ${score}`
+                                    }
+                                 })}   </p>
+
+                                }
+                            
+                                )
+                        
                     }
                 </section>
             </main>
