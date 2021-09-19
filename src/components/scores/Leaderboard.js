@@ -40,7 +40,7 @@ export const LeaderBoard = () => {
     useEffect(
         () => {
             localTeamsList?.find(user => {
-                if (user.id === parseInt(userId)) {
+                if (user.userId === parseInt(userId)) {
                     setUser(user)
                 }
             })
@@ -142,7 +142,7 @@ export const LeaderBoard = () => {
                 item.map(a => {
                    localTeamScores?.filter((team) => {
                        if (parseInt(team.id) === a.teamId) {
-                           let arr = []
+                           let arr = {}
                            arr.id = a.userId
                            arr.name = a.user.name
                            arr.teamId = a.teamId
@@ -187,9 +187,11 @@ export const LeaderBoard = () => {
 
     useEffect(
         () => {
-        const totalScores = totals?.reduce((a, {id, score}) => (a[id] = (a[id] || 0) + +score, a), []);
-        //const sortScores =  totalScores.sort((a, b) => b - a)
-        setTotalScoresArr(totalScores)
+        const totalScores = Array.from(totals?.reduce(
+            (m, {name, score}) => m.set(name, (m.get(name) || 0) + score), new Map
+          ), ([name, score]) => ({name, score}));
+        const leader = totalScores?.sort((a,b) => b.score - a.score)
+        setTotalScoresArr(leader)
         }, [totals] )
     
 
@@ -228,13 +230,8 @@ export const LeaderBoard = () => {
                 <section className="leaderContainer">
                 <h2>LeaderBoard</h2>
                     {
-                        localTeamArr?.map((team) => {
-                                 return <p>{totalsArr?.map((score, i) => {
-                                    if (team.userId === i) {
-                                        
-                                        return  `${team.user.name} ${score}`
-                                    }
-                                 })}   </p>
+                        totalsArr?.map((team) => {
+                                 return <p> {team.name} {team.score}  </p>
 
                                 }
                             
