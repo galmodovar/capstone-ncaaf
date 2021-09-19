@@ -113,7 +113,7 @@ useEffect( () => {
             })
     }, [ week ])
 
-    const weeks = teamScores?.week?.number
+    const weeks = teamScores?.week?.number 
 
 
     return (
@@ -143,7 +143,7 @@ useEffect( () => {
                         (event) => {
                              setWeek(parseInt(event.target.value) + 1)
                              }}>
-                                 <option>Choose a week:</option>
+                                 <option value ={weeks}>Choose a week:</option>
                                  {
                                  Array.from(Array(weeks).keys()).map(week => {
                                      return <option value={week++} key={`week--${week++}`}>Week:{week++}</option>
