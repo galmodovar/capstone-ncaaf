@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react"
 import { getAllNews } from "../ApiManager"
+import "./News.css"
 
 export const NewsFeed = () => {
     const [headlines, updateHeadlines] = useState([])
-    //const [totalCustomerMessage, updateMessage] = useState("")
+   
 
-    // useEffect(
-    //     () => {
-    //         getAllNews()
-    //             .then((data) => {
-    //                 updateHeadlines(data)
-    //             })
-    //     },
-    //     []
-    // )
+    useEffect(
+        () => {
+            getAllNews()
+                .then((data) => {
+                    updateHeadlines(data)
+                })
+        },
+        []
+    )
 
 
     return (

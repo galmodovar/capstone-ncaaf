@@ -4,10 +4,11 @@
 
 .teamContainer {
     display: grid;
-    grid-template-columns: repeat(5, 400px);
+    grid-template-columns: repeat(5, 325px);
+    background-color: black;
 }
 
-p {
+.teams {
     margin-top: 10px;
     display: flex;
     flex-direction: row;

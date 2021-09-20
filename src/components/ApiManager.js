@@ -49,11 +49,3 @@ export const getAllScores = () => {
         .then(res => res.json())
 }
 
-
-
-
-
-export const getAllProducts = () => {
-    return fetch(`http://localhost:8088/products?_expand=productType&_sort=productTypeId`)
-        .then(res => res.json())
-}

@@ -33,7 +33,7 @@ export const Scoreboard = () => {
                     {
                         topScores.events?.map(
                         (scoreObject) => {
-                        return <p key={`score--${scoreObject.id}`}> {scoreObject.date}  {scoreObject.name} </p>
+                        return <p key={`score--${scoreObject.id}`}> {scoreObject.name} </p>
                         }
                         )
                     }

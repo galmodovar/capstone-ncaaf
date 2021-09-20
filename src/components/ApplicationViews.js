@@ -39,12 +39,12 @@ export const ApplicationViews = () => {
             <Route exact path="/myTeams/:userId">
                 <MyTeams />
             </Route>
-                    <Route exact path="/">
-                    </Route>
+            <Route exact path="/">
+            </Route>
 
- 
 
-          
+
+
         </>
     )
 }
