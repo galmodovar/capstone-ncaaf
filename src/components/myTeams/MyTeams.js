@@ -9,7 +9,8 @@ export const MyTeams = () => {
     const [userTeamScores, setUserTeamScores] = useState([])
     const [pastScores, updatePastScores] = useState([])
     const [week, setWeek] = useState()
-
+    const [weeks, setWeeks] = useState()
+    
     useEffect(
         () => {
             getAllTeams()
@@ -23,7 +24,8 @@ export const MyTeams = () => {
         () => {
             getAllScores()
                 .then((data) => {
-                    setTeamScores(data)
+                    setWeek(data.week.number);
+                    setWeeks(data.week.number)
                 })
         },
         []
@@ -36,16 +38,15 @@ export const MyTeams = () => {
                 () => getMyTeams())
                 .then(
                     (data) => {
-                    const currentWeek = data.map(newData => {
-                        if (newData.week === teamScores?.week?.number) {
-                            setTeams(newData)
-                        } else {
-                            setTeams(data)
-                        }
+                    const currentWeek = data.filter(newData => {
+                        if (newData.week === week) {
+                            return newData
+                        } 
                     })
+                    setTeams(currentWeek)
                 })
         },
-        []
+        [teamScores, week]
     )
 
     useEffect(() => {
@@ -54,7 +55,7 @@ export const MyTeams = () => {
     }, [myTeams] )
 
 useEffect(() => {
-    const events = teamScores?.events?.map(event => event.competitions[0].competitors)
+    const events = pastScores?.events?.map(event => event.competitions[0].competitors)
     const myTeamScores = events?.filter((game) => {
         for (const a of game ) {
             for (const myTeam of myTeams) {
@@ -113,7 +114,7 @@ useEffect( () => {
             })
     }, [ week ])
 
-    const weeks = teamScores?.week?.number 
+    //const weeks = teamScores?.week?.number 
 
 
     return (
@@ -143,7 +144,7 @@ useEffect( () => {
                         (event) => {
                              setWeek(parseInt(event.target.value) + 1)
                              }}>
-                                 <option value ={weeks}>Choose a week:</option>
+                                 <option>Choose a week:</option>
                                  {
                                  Array.from(Array(weeks).keys()).map(week => {
                                      return <option value={week++} key={`week--${week++}`}>Week:{week++}</option>

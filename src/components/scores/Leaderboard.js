@@ -3,34 +3,48 @@ import { getMyTeams, getAllLocalTeams, getAllScores } from "../ApiManager";
 import "./Leaderboard.css";
 
 export const LeaderBoard = () => {
-  const [teamsList, setTeams] = useState([]);
-  const [localTeamsList, setLocalTeams] = useState([]);
-  const [currentUser, setUser] = useState();
-  const [teamScores, setTeamScores] = useState([]);
-  const [userTeamScores, setUserTeamScores] = useState([]);
-  const [localTeamScores, setLocalTeamScores] = useState([]);
-  const [localTeamArr, setUserTeams] = useState([]);
-  const [userGroups, setUserGroups] = useState();
-  const [totals, setTotal] = useState([]);
-  const [total, setTotals] = useState(0);
-  const [totalsArr, setTotalScoresArr] = useState();
+    const [teamsList, setTeams] = useState([]);
+    const [localTeamsList, setLocalTeams] = useState([]);
+    const [currentUser, setUser] = useState();
+    const [teamScores, setTeamScores] = useState([]);
+    const [userTeamScores, setUserTeamScores] = useState([]);
+    const [localTeamScores, setLocalTeamScores] = useState([]);
+    const [localTeamArr, setUserTeams] = useState([]);
+    const [userGroups, setUserGroups] = useState();
+    const [totals, setTotal] = useState([]);
+    const [total, setTotals] = useState(0);
+    const [totalsArr, setTotalScoresArr] = useState();
   const [week, setWeek] = useState()
+  const [weeks, setWeeks] = useState()
   const [pastScores, updatePastScores] = useState([])
   // const [groupTeams, setGroupTeams] = useState({})
   // const [chosenTeams, updateTeams] = useState({})
   const userId = localStorage.getItem("ncaaf_user");
 
   useEffect(() => {
-    getMyTeams().then((data) => {
-      setTeams(data);
-    });
-  }, [userId]);
+    getMyTeams()
+        .then(
+            (data) => {
+            const currentWeek = data.filter(newData => {
+                if (newData.week === week) {
+                    return newData
+                } 
+            })
+            setTeams(currentWeek)
+        })
+},
+[teamScores, week]
+)
   useEffect(() => {
     getAllLocalTeams().then((data) => {
-      let sortedTeams = data.sort((a, b) => a.userId - b.userId);
-      setLocalTeams(sortedTeams);
+        const currentWeek = data.filter(newData => {
+            if (newData.week === week) {
+                return newData
+            } 
+        })
+      setLocalTeams(currentWeek);
     });
-  }, []);
+  }, [week]);
   useEffect(() => {
     localTeamsList?.find((user) => {
       if (user.userId === parseInt(userId)) {
@@ -39,12 +53,14 @@ export const LeaderBoard = () => {
     });
   }, [localTeamsList]);
   useEffect(() => {
-    getAllScores().then((data) => {
-      setTeamScores(data);
+    getAllScores().then(
+        (data) => {
+      setWeek(data.week.number);
+      setWeeks(data.week.number);
     });
   }, []);
   useEffect(() => {
-    const events = teamScores?.events?.map(
+    const events = pastScores?.events?.map(
       (event) => event.competitions[0].competitors
     );
     const myTeamScores = events?.filter((game) => {
@@ -59,33 +75,33 @@ export const LeaderBoard = () => {
     const scores = myTeamScores?.flat();
     const userScores = scores?.filter(
       (filterTeam) =>
-        !!teamsList.some((myTeam) => parseInt(filterTeam.id) === myTeam.teamId)
+        !!localTeamsList.some((myTeam) => parseInt(filterTeam.id) === myTeam.teamId)
     );
     setUserTeamScores(userScores);
-  }, [teamScores]);
+  }, [pastScores, teamsList]);
 
-  useEffect(() => {
-    const events = teamScores?.events?.map(
-      (event) => event.competitions[0].competitors
-    );
-    const myTeamScores = events?.filter((game) => {
-      for (const a of game) {
-        for (const localTeam of localTeamsList) {
-          if (parseInt(a.team.id) === localTeam.teamId) {
-            return a;
-          }
-        }
-      }
-    });
-    const scores = myTeamScores?.flat();
-    const localScores = scores?.filter(
-      (filterTeam) =>
-        !!localTeamsList.some(
-          (myTeam) => parseInt(filterTeam.id) === myTeam.teamId
-        )
-    );
-    setLocalTeamScores(localScores);
-  }, [teamScores]);
+//   useEffect(() => {
+//     const events = pastScores?.events?.map(
+//       (event) => event.competitions[0].competitors
+//     );
+//     const myTeamScores = events?.filter((game) => {
+//       for (const a of game) {
+//         for (const localTeam of localTeamsList) {
+//           if (parseInt(a.team.id) === localTeam.teamId) {
+//             return a;
+//           }
+//         }
+//       }
+//     });
+//     const scores = myTeamScores?.flat();
+//     const localScores = scores?.filter(
+//       (filterTeam) =>
+//         !!localTeamsList.some(
+//           (myTeam) => parseInt(filterTeam.id) === myTeam.teamId
+//         )
+//     );
+//     setLocalTeamScores(localScores);
+//   }, [teamScores, teamsList, pastScores]);
 
   useEffect(() => {
     const events = pastScores?.events?.map(event => event.competitions[0].competitors)
@@ -102,6 +118,7 @@ export const LeaderBoard = () => {
     const scores = myTeamScores?.flat()
     const userScores = scores?.filter((filterTeam => !!localTeamsList.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
     setLocalTeamScores(userScores)
+
 
     }, [pastScores] )
 
@@ -200,7 +217,7 @@ export const LeaderBoard = () => {
       });
   }, [week]);
 
-  const weeks = teamScores?.week?.number;
+  //const weeks = teamScores?.week?.number;
 
   return (
     <>
@@ -229,7 +246,7 @@ export const LeaderBoard = () => {
               setWeek(parseInt(event.target.value) + 1);
             }}
           >
-            <option value={weeks}>Choose a week:</option>
+            <option value>Choose a week:</option>
             {Array.from(Array(weeks).keys()).map((week) => {
               return (
                 <option value={week++} key={`week--${week++}`}>
