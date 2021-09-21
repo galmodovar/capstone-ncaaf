@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { getAllScores } from "../ApiManager"
+import "./Scoreboard.css"
 
 export const Scoreboard = () => {
     const [topScores, updateScores] = useState([])
@@ -28,12 +29,13 @@ export const Scoreboard = () => {
     return (
         <>
             <main className="mainContainer">
-                <section className="scoreContainer">
                     <h3> Week {topScores.week?.number} Schedule:</h3>
+                <section className="scheduleContainer">
                     {
                         topScores.events?.map(
                         (scoreObject) => {
-                        return <p key={`score--${scoreObject.id}`}> {scoreObject.name} </p>
+                        return <p key={`score--${scoreObject.id}`} className="weekSchedule"> 
+                        <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/> {scoreObject?.competitions[0].competitors[0].team.location} <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/> {scoreObject?.competitions[0].competitors[1].team.location} </p>
                         }
                         )
                     }
@@ -52,7 +54,7 @@ export const Scoreboard = () => {
                                 }
                     </select>
                 </section>
-                <section className="scoreContainer">
+                <section className="scheduleContainer">
                     {
                         pastScores?.events?.map(
                         (scoreObject) => {

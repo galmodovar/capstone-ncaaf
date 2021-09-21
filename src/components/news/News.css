@@ -1,3 +1,7 @@
-p {
+.headline {
     margin-top: 2rem;
+}
+
+.newsContainer {
+    background: linear-gradient(-10deg, black, transparent)
 }

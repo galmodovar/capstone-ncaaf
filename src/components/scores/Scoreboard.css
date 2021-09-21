@@ -1,0 +1,19 @@
+.scoreContainer {
+    margin-left: 2rem
+}
+
+.scheduleContainer {
+    margin-top: 2rem;
+    column-count: 2;
+    background: linear-gradient(45deg, black, transparent);
+    border: 1px solid black;
+}
+
+.weekSchedule {
+    margin: 0 2rem 2rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-block-size: 2rem;
+    
+}

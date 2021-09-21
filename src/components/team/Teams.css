@@ -5,14 +5,16 @@
 .teamContainer {
     display: grid;
     grid-template-columns: repeat(5, 325px);
-    background-color: black;
+    margin-left: 5rem;
+    background: linear-gradient(45deg, black, transparent);
+    
 }
 
 .teams {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     max-inline-size: 20rem;
     max-block-size: 2rem;
 }
@@ -22,10 +24,15 @@
     background-color: slategray;
     font-size: xx-small;
     max-inline-size: 3rem;
+    margin-right: 20px;
     
 }
 
 .team-btn:hover {
     background-color: darkgreen;
     color: slategray
+}
+
+.teamList {
+    text-align: center;
 }

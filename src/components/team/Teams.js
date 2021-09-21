@@ -58,9 +58,9 @@ export const Teams = () => {
 
     return (
         <>
-            <h3> Team List:</h3>
-
-         <section className="teamContainer">
+            <main className="mainContainer">
+            <section className="teamContainer">
+            <h3 className="teamList"> Team List:</h3>
            { 
               teamList?.teams?.map(
                  (teamObject ) => {
@@ -70,7 +70,8 @@ export const Teams = () => {
                     }
                 )
             }
-            </section>   
+            </section>
+            </main>
 
          
            

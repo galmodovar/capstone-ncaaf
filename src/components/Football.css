@@ -27,10 +27,10 @@ h1 {
 }
 
 .container {
-  /*background-image: url(./capstone-imgs/footballMain.jpg);*/
-  background-color: black;
+  background-image: url(./capstone-imgs/footballMain.jpg);
+  /*background-color: black;*/
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   min-height: 100vh;
   color: #cfcd96;
 }

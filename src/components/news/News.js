@@ -19,14 +19,17 @@ export const NewsFeed = () => {
 
     return (
         <>
+        
+            <section className="newsContainer">
             <h3> Latest Headlines:</h3>
             {
                 headlines.articles?.map(
                     (headlineObject) => {
-                        return <p key={`headline--`}> {headlineObject.headline} </p>
+                        return <p key={`headline--`} className="headline"> {headlineObject.headline} </p>
                     }
                 )
             }
+            </section>
         </>
     )
 }
