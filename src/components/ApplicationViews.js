@@ -2,7 +2,6 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { MyTeams } from "./myTeams/MyTeams"
 import { MainFeed } from "./news/MainNews"
-import { NewsFeed } from "./news/News"
 import { LeaderBoard } from "./scores/Leaderboard"
 import { Scoreboard } from "./scores/Scoreboard"
 import { Teams } from "./team/Teams"
@@ -18,10 +17,6 @@ export const ApplicationViews = () => {
         <>
             <Route exact path="/">
                 <MainFeed />
-            </Route>
-
-            <Route exact path="/news">
-                <NewsFeed />
             </Route>
 
             <Route exact path="/scores">

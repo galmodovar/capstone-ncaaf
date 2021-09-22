@@ -1,0 +1,11 @@
+.myTeams {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.teamsGameWeek {
+    background: linear-gradient(180deg, black, transparent);
+    height: fit-content;
+}

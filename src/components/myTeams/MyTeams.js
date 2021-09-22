@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getMyTeams, getAllTeams, getAllScores } from '../ApiManager'
+import "./myTeams.css"
 
 export const MyTeams = () => {
     const [teamList, updateTeams] = useState()
@@ -70,7 +71,7 @@ export const MyTeams = () => {
         const userScores = scores?.filter((filterTeam => !!myTeams.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
         setUserTeamScores(userScores)
 
-    }, [myTeams])
+    }, [myTeams, week])
 
     useEffect(() => {
         const events = pastScores?.events?.map(event => event.competitions[0].competitors)
@@ -144,7 +145,7 @@ export const MyTeams = () => {
                         userTeams?.map(
                             (teamObject) => {
 
-                                return <p key={`team--${teamObject.team.id}`}>  <img src={teamObject.team.logos[1].href} className="teamsList" /> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
+                                return <p key={`team--${teamObject.team.id}`} className="myTeams">  <img src={teamObject.team.logos[1].href} className="teamsList" /> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
                                     <button onClick={() => {
                                         const team = myTeams.find(team => {
                                             if (team.teamId === parseInt(teamObject.team.id)) {
@@ -163,7 +164,7 @@ export const MyTeams = () => {
                     {
                         userTeamScores?.map(
                             (teamObject) => {
-                                return <p key={`team--${teamObject.id}`}>  <img src={teamObject.team.logo} className="teamsList" /> {teamObject.team.displayName} {teamObject.score} </p>
+                                return <p key={`team--${teamObject.id}`} className="myTeams">  <img src={teamObject.team.logo} className="teamsList" /> {teamObject.team.displayName} {teamObject.score} </p>
                             }
                         )
                     }

@@ -54,12 +54,14 @@ export const Scoreboard = () => {
                                 }
                     </select>
                 </section>
-                <section className="scheduleContainer">
+                <section className="pastScoreContainer">
                     {
                         pastScores?.events?.map(
                         (scoreObject) => {
-                        return <p key={`score--${scoreObject.id}`}> {scoreObject.date}  
-                        {scoreObject?.competitions[0].competitors[0].team.name} {scoreObject?.competitions[0].competitors[0].score} {scoreObject?.competitions[0].competitors[1].team.name} {scoreObject?.competitions[0].competitors[1].score}</p>
+                        return <p key={`score--${scoreObject.id}`} className="weekSchedule"> <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/>   
+                        {scoreObject?.competitions[0].competitors[0].team.name} <b>{scoreObject?.competitions[0].competitors[0].score}</b> 
+                        <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/>
+                        {scoreObject?.competitions[0].competitors[1].team.name} <b>{scoreObject?.competitions[0].competitors[1].score}</b></p>
                         })
                     }
                 </section> 

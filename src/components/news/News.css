@@ -3,5 +3,21 @@
 }
 
 .newsContainer {
-    background: linear-gradient(-10deg, black, transparent)
+    background: linear-gradient(-10deg, black, transparent);
+    height: fit-content;
 }
+
+.teamRankings {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    max-inline-size: 20rem;
+    max-block-size: 2rem;
+}
+
+.scheduleContainer--main {
+    margin-top: 2rem;
+    column-count: 2;
+    background: linear-gradient(45deg, black, transparent);
+    min-width: 65%;
+  }

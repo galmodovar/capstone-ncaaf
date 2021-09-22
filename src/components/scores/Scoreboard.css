@@ -6,7 +6,6 @@
     margin-top: 2rem;
     column-count: 2;
     background: linear-gradient(45deg, black, transparent);
-    border: 1px solid black;
 }
 
 .weekSchedule {
@@ -16,4 +15,14 @@
     justify-content: space-between;
     max-block-size: 2rem;
     
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.pastScoreContainer {
+    margin-top: 2rem;
+    column-count: 2;
+    background: linear-gradient(45deg, black, transparent);
 }
