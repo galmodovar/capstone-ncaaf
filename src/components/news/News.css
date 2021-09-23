@@ -5,6 +5,10 @@
 .newsContainer {
     background: linear-gradient(-10deg, black, transparent);
     height: fit-content;
+    height: 720px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
 }
 
 .teamRankings {
@@ -15,9 +19,28 @@
     max-block-size: 2rem;
 }
 
-.scheduleContainer--main {
+/* .scheduleContainer--main {
     margin-top: 2rem;
     column-count: 2;
     background: linear-gradient(45deg, black, transparent);
     min-width: 65%;
+  } */
+
+  .scheduleContainer--main {
+    margin:4px, 4px;
+    padding:4px;
+    background: linear-gradient(-10deg, black, transparent);
+    min-width: 65%;
+    height: 710px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
+  }
+
+  .newsContainer::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scheduleContainer--main::-webkit-scrollbar {
+    display: none;
   }

@@ -7,8 +7,16 @@
     grid-template-columns: repeat(5, 325px);
     margin-left: 5rem;
     background: linear-gradient(45deg, black, transparent);
+    height: 810px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
     
 }
+
+.teamContainer::-webkit-scrollbar {
+    display: none;
+  }
 
 .teams {
     margin-top: 10px;

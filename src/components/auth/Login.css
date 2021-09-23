@@ -45,6 +45,12 @@ fieldset {
 
 .container--login {
     text-align: center;
+    color: #cfcd96;
+    background-image: url(../capstone-imgs/footballAlternate.jpg);
+    /*background-color: black;*/
+    background-repeat: round;
+        
+    min-height: 100vh;
 }
 
 .form--login {
