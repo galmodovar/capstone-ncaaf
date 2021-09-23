@@ -49,6 +49,7 @@ fieldset {
     background-image: url(../capstone-imgs/footballAlternate.jpg);
     /*background-color: black;*/
     background-repeat: round;
+    
         
     min-height: 100vh;
 }
@@ -73,3 +74,6 @@ fieldset {
     min-height: 5rem;
 }
 
+a {
+    font-style: none;
+}

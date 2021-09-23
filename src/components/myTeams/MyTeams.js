@@ -159,12 +159,12 @@ export const MyTeams = () => {
                     }
                     <h3>You have {myTeams.length} teams on your roster for the week.</h3>
                 </section>
-                <section className="teamsGameWeek">
+                <section className="teamsGameScore">
                     <h2>Team Scores</h2>
                     {
                         userTeamScores?.map(
                             (teamObject) => {
-                                return <p key={`team--${teamObject.id}`} className="myTeams">  <img src={teamObject.team.logo} className="teamsList" /> {teamObject.team.displayName} {teamObject.score} </p>
+                                return <p key={`team--${teamObject.id}`} className="teams">  <img src={teamObject.team.logo} className="teamsList" /> {teamObject.team.displayName} {teamObject.score} </p>
                             }
                         )
                     }

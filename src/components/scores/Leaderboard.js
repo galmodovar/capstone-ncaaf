@@ -17,8 +17,6 @@ export const LeaderBoard = () => {
   const [week, setWeek] = useState()
   const [weeks, setWeeks] = useState()
   const [pastScores, updatePastScores] = useState([])
-  // const [groupTeams, setGroupTeams] = useState({})
-  // const [chosenTeams, updateTeams] = useState({})
   const userId = localStorage.getItem("ncaaf_user");
 
   useEffect(() => {
@@ -80,28 +78,6 @@ export const LeaderBoard = () => {
     setUserTeamScores(userScores);
   }, [pastScores, teamsList]);
 
-  //   useEffect(() => {
-  //     const events = pastScores?.events?.map(
-  //       (event) => event.competitions[0].competitors
-  //     );
-  //     const myTeamScores = events?.filter((game) => {
-  //       for (const a of game) {
-  //         for (const localTeam of localTeamsList) {
-  //           if (parseInt(a.team.id) === localTeam.teamId) {
-  //             return a;
-  //           }
-  //         }
-  //       }
-  //     });
-  //     const scores = myTeamScores?.flat();
-  //     const localScores = scores?.filter(
-  //       (filterTeam) =>
-  //         !!localTeamsList.some(
-  //           (myTeam) => parseInt(filterTeam.id) === myTeam.teamId
-  //         )
-  //     );
-  //     setLocalTeamScores(localScores);
-  //   }, [teamScores, teamsList, pastScores]);
 
   useEffect(() => {
     const events = pastScores?.events?.map(event => event.competitions[0].competitors)
@@ -172,28 +148,6 @@ export const LeaderBoard = () => {
     );
     setTotal(score);
   }, [localTeamScores, userGroups]);
-
-  // useEffect(
-  //     () => {
-  //         localTeamsList?.map(teamObject => {
-  //         updateTeamState("team", teamObject.id)
-  //         buildTeamObject("teamId", teamObject.teamId)
-  //         })
-  //     },
-  //     [localTeamsList]
-  // )
-
-  // const buildTeamObject = (idToModify, newValue) => {
-  //     const newTeams = { ...groupTeams }
-  //     newTeams[idToModify] = newValue
-  //     setGroupTeams(newTeams)
-  // }
-
-  // const updateTeamState = (propToModify, newValue) => {
-  //     const newObject = { ...chosenTeams }  // Copy of state
-  //     newObject[propToModify] = newValue
-  //     updateTeams(newObject)              // Update state with copy
-  // }
 
   useEffect(() => {
     const totalScores = Array.from(

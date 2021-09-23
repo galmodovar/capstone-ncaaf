@@ -5,7 +5,15 @@
     justify-content: space-between;
 }
 
-.teamsGameWeek {
-    background: linear-gradient(180deg, black, transparent);
-    height: fit-content;
+.teamsGameWeek, .teamsGameScore {
+    background: linear-gradient(-10deg, black, transparent);
+    margin-left: 10rem;
+    margin-top: 2rem;
+    width: 30%;
+}
+
+.teamsGameScore {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
