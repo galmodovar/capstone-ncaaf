@@ -47,7 +47,7 @@ export const MyTeams = () => {
                         setTeams(currentWeek)
                     })
         },
-        [teamScores, week]
+        [week]
     )
 
     useEffect(() => {

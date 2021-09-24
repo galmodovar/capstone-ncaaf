@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { getAllNews, getAllRankings, getAllScores } from "../ApiManager"
 import "./News.css"
 
@@ -60,7 +61,12 @@ export const MainFeed = () => {
                     {
                         headlines.articles?.map(
                         (headlineObject) => {
-                        return <p key={`headline--`}> {headlineObject.headline} </p>
+                        return <p key={`headline--`}> {headlineObject.headline} <Link className="main-headline"
+                        to={{
+                            pathname: `${headlineObject.links.web.href}`,
+                        }} target="_blank">
+                        <span>Read more</span>
+                    </Link> </p>
                         }
                         )
                     }

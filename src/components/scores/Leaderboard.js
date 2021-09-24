@@ -31,7 +31,7 @@ export const LeaderBoard = () => {
           setTeams(currentWeek)
         })
   },
-    [teamScores, week]
+    [week]
   )
   useEffect(() => {
     getAllLocalTeams().then((data) => {
@@ -199,10 +199,10 @@ export const LeaderBoard = () => {
           <h2>{currentUser?.user.name}'s Score</h2>
           {userTeamScores?.map((teamObject) => {
             return (
-              <p key={`team--${teamObject.team.id}`}>
+              <p key={`team--${teamObject.team.id}`} className="teams">
                 {" "}
                 <img src={teamObject.team.logo} className="teamsList" />{" "}
-                {teamObject.team.displayName} {teamObject.score}
+                {teamObject.team.displayName} <b>{teamObject.score}</b>
               </p>
             );
           })}
@@ -211,24 +211,6 @@ export const LeaderBoard = () => {
           </h3>
           <h3>Current score for the week {total}</h3>
         </section>
-        {/* <section className="scoreContainer">
-          <h3> Past Scores:</h3>
-          <select
-            className="week__dropdown"
-            onChange={(event) => {
-              setWeek(parseInt(event.target.value) + 1);
-            }}
-          >
-            <option value>Choose a week:</option>
-            {Array.from(Array(weeks).keys()).map((week) => {
-              return (
-                <option value={week++} key={`week--${week++}`}>
-                  Week:{week++}
-                </option>
-              );
-            })}
-          </select>
-        </section> */}
         <section className="localTeamContainer">
           <h2>Current Scores</h2>
           {localTeamScores?.map((teamObject) => {
@@ -236,7 +218,7 @@ export const LeaderBoard = () => {
               <p key={`team--${teamObject.team.id}`}>
                 {" "}
                 <img src={teamObject.team.logo} className="teamsList" />{" "}
-                {teamObject.team.displayName} {teamObject.score}{" "}
+                {teamObject.team.displayName} <b>{teamObject.score}</b>{" "}
               </p>
             );
           })}
