@@ -96,15 +96,6 @@ export const LeaderBoard = () => {
 
   }, [pastScores])
 
-  // useEffect(() => {
-  //   const teamArr = Array.from(
-  //     new Set(localTeamsList.map((a) => a.userId))
-  //   ).map((id) => {
-  //     return localTeamsList.find((a) => a.userId === id);
-  //   });
-  //   setUserTeams(teamArr);
-  // }, [localTeamsList, localTeamScores]);
-
   useEffect(() => {
     const scores = localTeamScores
       ?.filter((team) => localTeamsList.includes(parseInt(team.id)))
