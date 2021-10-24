@@ -6,10 +6,11 @@
 }
 
 .teamsGameWeek, .teamsGameScore {
-    background: linear-gradient(-10deg, black, transparent);
+    background: linear-gradient(175deg, black, transparent);
     margin-left: 10rem;
     margin-top: 2rem;
     width: 30%;
+    text-align: center;
 }
 
 .teamsGameScore {

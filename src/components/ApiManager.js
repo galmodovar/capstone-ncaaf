@@ -1,6 +1,4 @@
 
-
-
 // Local calls
 export const getAllUsers = () => {
     return fetch(`http://localhost:8088/users`)
@@ -17,10 +15,6 @@ export const getAllLocalTeams = () => {
     return fetch(`http://localhost:8088/myTeams?_expand=user`)
         .then(res => res.json())
 }
-
-
-
-
 
 // External Calls
 

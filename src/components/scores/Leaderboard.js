@@ -6,10 +6,8 @@ export const LeaderBoard = () => {
   const [teamsList, setTeams] = useState([]);
   const [localTeamsList, setLocalTeams] = useState([]);
   const [currentUser, setUser] = useState();
-  const [teamScores, setTeamScores] = useState([]);
   const [userTeamScores, setUserTeamScores] = useState([]);
   const [localTeamScores, setLocalTeamScores] = useState([]);
-  const [localTeamArr, setUserTeams] = useState([]);
   const [userGroups, setUserGroups] = useState();
   const [totals, setTotal] = useState([]);
   const [total, setTotals] = useState(0);
@@ -98,14 +96,14 @@ export const LeaderBoard = () => {
 
   }, [pastScores])
 
-  useEffect(() => {
-    const teamArr = Array.from(
-      new Set(localTeamsList.map((a) => a.userId))
-    ).map((id) => {
-      return localTeamsList.find((a) => a.userId === id);
-    });
-    setUserTeams(teamArr);
-  }, [localTeamsList, localTeamScores]);
+  // useEffect(() => {
+  //   const teamArr = Array.from(
+  //     new Set(localTeamsList.map((a) => a.userId))
+  //   ).map((id) => {
+  //     return localTeamsList.find((a) => a.userId === id);
+  //   });
+  //   setUserTeams(teamArr);
+  // }, [localTeamsList, localTeamScores]);
 
   useEffect(() => {
     const scores = localTeamScores
@@ -171,8 +169,6 @@ export const LeaderBoard = () => {
       });
   }, [week]);
 
-  //const weeks = teamScores?.week?.number;
-
   return (
     <>
       <main className="mainContainer">
@@ -201,7 +197,7 @@ export const LeaderBoard = () => {
             return (
               <p key={`team--${teamObject.team.id}`} className="teams">
                 {" "}
-                <img src={teamObject.team.logo} className="teamsList" />{" "}
+                <img src={teamObject.team.logo} className="teamsList" />
                 {teamObject.team.displayName} <b>{teamObject.score}</b>
               </p>
             );
@@ -216,9 +212,8 @@ export const LeaderBoard = () => {
           {localTeamScores?.map((teamObject) => {
             return (
               <p key={`team--${teamObject.team.id}`}>
-                {" "}
-                <img src={teamObject.team.logo} className="teamsList" />{" "}
-                {teamObject.team.displayName} <b>{teamObject.score}</b>{" "}
+                <img src={teamObject.team.logo} className="teamsList" />
+                {teamObject.team.displayName} <b>{teamObject.score}</b>
               </p>
             );
           })}
@@ -228,8 +223,7 @@ export const LeaderBoard = () => {
           {totalsArr?.map((team) => {
             return (
               <p>
-                {" "}
-                {team.name} {team.score}{" "}
+                {team.name} {team.score}
               </p>
             );
           })}

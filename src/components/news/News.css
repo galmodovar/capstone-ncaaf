@@ -3,12 +3,14 @@
 }
 
 .newsContainer {
-    background: linear-gradient(-10deg, black, transparent);
+    background: linear-gradient(180deg, black, transparent);
     height: fit-content;
     height: 720px;
     overflow-x: hidden;
     overflow-y: auto;
     text-align:justify;
+    margin: 0 1rem;
+    padding: .5rem 1rem
 }
 
 .teamRankings {
@@ -30,8 +32,8 @@ span {
   .scheduleContainer--main {
     margin:4px, 4px;
     padding:4px;
-    background: linear-gradient(-10deg, black, transparent);
-    min-width: 65%;
+    background: linear-gradient(180deg, black, transparent);
+    min-width: 70%;
     height: 710px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -49,4 +51,9 @@ span {
   .main-headline {
     margin-left:  2px;
     font-size: xx-small;
+  }
+
+  .rankings {
+    display: flex;
+    flex-direction: column;
   }

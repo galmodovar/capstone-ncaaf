@@ -48,10 +48,14 @@ export const MainFeed = () => {
                     {
                         topScores.events?.map(
                         (scoreObject) => {
-                            return <p key={`score--${scoreObject.id}`} className="weekSchedule"> <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/>   
-                            {scoreObject?.competitions[0].competitors[0].team.name} <b>{scoreObject?.competitions[0].competitors[0].score}</b> 
-                            <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/>
-                            {scoreObject?.competitions[0].competitors[1].team.name} <b>{scoreObject?.competitions[0].competitors[1].score}</b></p>
+                        return <p key={`score--${scoreObject.id}`} className="weekSched"> 
+                    <tr className="weekSchedule">
+                           <td> <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/> </td>  
+                            <td>{scoreObject?.competitions[0].competitors[0].team.name}</td><td> <b>{scoreObject?.competitions[0].competitors[0].score}</b> </td>
+                            <td> <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/></td>
+                            <td>{scoreObject?.competitions[0].competitors[1].team.name}</td><td> <b>{scoreObject?.competitions[0].competitors[1].score}</b></td>
+
+                    </tr></p>
                             }
                         )
                     }
@@ -61,25 +65,26 @@ export const MainFeed = () => {
                     {
                         headlines.articles?.map(
                         (headlineObject) => {
-                        return <p key={`headline--`}> {headlineObject.headline} <Link className="main-headline"
-                        to={{
+                        return <p key={`headline--`}> {headlineObject.headline} 
+                        <Link className="main-headline" to={{
                             pathname: `${headlineObject.links.web.href}`,
                         }} target="_blank">
                         <span>Read more</span>
-                    </Link> </p>
-                        }
-                        )
+                        </Link> </p>
+                        })
                     }
                     <h3> Latest AP Poll Rankings:</h3>
-                    <div className="rankings">
+                    <tr className="rankings">
                     {
                         rankings?.map(
                         (rankingObject) => {
-                        return <p key={`ranking--`} className="teamRankings"> #{rankingObject.current} <img src={rankingObject.team.logo} className="teamsList"/> {rankingObject.team.nickname} {rankingObject.recordSummary} </p>
-                        }
-                        )
+                        return <p key={`ranking--`} className="teamRankings">
+                             <td>#{rankingObject.current}</td> 
+                             <td><img src={rankingObject.team.logo} className="teamsList"/> </td><td> {rankingObject.team.nickname}</td><td> {rankingObject.recordSummary}</td>
+                    </p> 
+                        })
                     }
-                    </div>
+                    </tr> 
                 </section>
             </main>
             

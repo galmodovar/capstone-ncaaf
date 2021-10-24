@@ -4,7 +4,6 @@ import "./myTeams.css"
 
 export const MyTeams = () => {
     const [teamList, updateTeams] = useState()
-    const [teamScores, setTeamScores] = useState([])
     const [myTeams, setTeams] = useState([])
     const [userTeams, setUserTeams] = useState([])
     const [userTeamScores, setUserTeamScores] = useState([])

@@ -1,6 +1,8 @@
 .myTeamContainer, .localTeamContainer, .leaderContainer {
     background: linear-gradient(180deg, black, transparent);
-    margin-left: 8rem;
+    margin-left: 5rem;
     margin-top: 2rem;
-    width: 20%
+    width: 20%;
+    text-align: center;
+    padding: 0 1rem;
 }
