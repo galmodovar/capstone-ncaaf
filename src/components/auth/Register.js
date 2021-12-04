@@ -47,7 +47,7 @@ export const Register = (props) => {
 
 
     return (
-        <main style={{ textAlign: "center" }}>
+        <main style={{ textAlign: "center" }} className="container--login">
             <dialog className="dialog dialog--password" ref={conflictDialog}>
                 <div>Account with that email address already exists</div>
                 <button className="button--close" onClick={e => conflictDialog.current.close()}>Close</button>
@@ -62,12 +62,12 @@ export const Register = (props) => {
                            placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="address"> Address </label>
-                    <input onChange={updateCustomer} type="text" id="address" className="form-control" placeholder="Street address" required />
-                </fieldset>
-                <fieldset>
                     <label htmlFor="email"> Email address </label>
                     <input onChange={updateCustomer} type="email" id="email" className="form-control" placeholder="Email address" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="password"> Password </label>
+                    <input onChange={updateCustomer} type="text" id="password" className="form-control" placeholder="Password" required />
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Register </button>
