@@ -14,20 +14,12 @@ export const Football = () => (
           return (
             <>
             <div className='container'>
-
-            <Link className="main-page"
-                                to={{
-                                    pathname: `/`,
-                                }}>
-                                <h1>NCAA Football</h1>
-                            </Link>
-
-            {/* <h1>NCAA Football</h1>   */}
+            <Link className="main-page" to={{pathname: `/`,}}>
+              <h1>NCAA Football</h1>
+            </Link>
               <NavBar />
               <ApplicationViews />
             </div>
-             
-              
             </>
           );
         } else {

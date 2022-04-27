@@ -1,7 +1,12 @@
-.h1, h1 {
+h1 {
     font-size: 2.5rem;
     background-color: rgb(20, 34, 20);
     margin-top: 0px;
+    text-align: center;
+}
+
+h2 {
+    margin-left: 1rem;
 }
 
 fieldset {
@@ -9,7 +14,11 @@ fieldset {
     padding: 1rem 0;
     margin: 0;
     border: 0;
+    margin-left: 1rem;
+    
 }
+
+
 
 .form--login {
     display: inline-block;
@@ -47,10 +56,7 @@ fieldset {
     text-align: center;
     color: #cfcd96;
     background-image: url(../capstone-imgs/footballAlternate.jpg);
-    /*background-color: black;*/
     background-repeat: round;
-    
-        
     min-height: 100vh;
 }
 
@@ -76,4 +82,5 @@ fieldset {
 
 a {
     font-style: none;
+    margin-left: 1rem;
 }
