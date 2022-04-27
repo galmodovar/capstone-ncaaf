@@ -7,11 +7,6 @@ import { Scoreboard } from "./scores/Scoreboard"
 import { Teams } from "./team/Teams"
 
 
-
-
-
-
-
 export const ApplicationViews = () => {
     return (
         <>

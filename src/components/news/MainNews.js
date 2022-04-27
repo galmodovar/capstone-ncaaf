@@ -17,7 +17,6 @@ export const MainFeed = () => {
         },
         []
     )
-
     useEffect(
         () => {
             getAllScores()
@@ -27,7 +26,6 @@ export const MainFeed = () => {
         },
         []
     )
-
     useEffect(
         () => {
             getAllRankings()
@@ -38,8 +36,6 @@ export const MainFeed = () => {
         },
         []
     )
-
-
     return (
         <>
             <h3> Week {topScores.week?.number} Latest Scores:</h3>

@@ -5,8 +5,8 @@
 .teamContainer {
     display: grid;
     grid-template-columns: repeat(5, 325px);
-    margin-left: 5rem;
-    background: linear-gradient(45deg, black, transparent);
+    margin: 0 2.5rem;
+    background: linear-gradient(180deg, black, transparent);
     height: 810px;
     overflow-x: hidden;
     overflow-y: auto;
