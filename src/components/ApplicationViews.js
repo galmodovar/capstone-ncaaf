@@ -1,7 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { MyTeams } from "./myTeams/MyTeams"
-import { MainFeed } from "./news/MainNews"
+import { MainFeed } from "./news/Main"
 import { LeaderBoard } from "./scores/Leaderboard"
 import { Scoreboard } from "./scores/Scoreboard"
 import { Teams } from "./team/Teams"
