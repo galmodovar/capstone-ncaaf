@@ -18,18 +18,25 @@ export const MainScores = () => {
     return (
         <>
         <section className="scheduleContainer--main">
-        <h3> Week {topScores.week?.number} Latest Scores:</h3>
-        
+        <h3 className="currentWeek"> Week {topScores.week?.number} Latest Scores:</h3>
+        <ul className="teamScores">
             {
             topScores.events?.map(
-                        (scoreObject) => {
-                            return <p key={`score--${scoreObject.id}`} className="weekSchedule"> <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/>   
-                            {scoreObject?.competitions[0].competitors[0].team.name} <b>{scoreObject?.competitions[0].competitors[0].score}</b> 
-                            <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/>
-                            {scoreObject?.competitions[0].competitors[1].team.name} <b>{scoreObject?.competitions[0].competitors[1].score}</b></p>
-                            }
+                        (scoreObject, i) => {
+                            return <>
+                            <li key={`score--${scoreObject.id}`} className="weekSchedule"> 
+                            <p className="teamNames"><img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList" alt=""/>   
+                            {scoreObject?.competitions[0].competitors[0].team.name} <b> {scoreObject?.competitions[0].competitors[0].score}</b></p>
+                            <p className="teamNames"><img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList" alt =""/>
+                            {scoreObject?.competitions[0].competitors[1].team.name} <b> {scoreObject?.competitions[0].competitors[1].score}</b></p>
+                            </li>
+                        </>    
+                        }
                         )
                     }
+
+        </ul>
+
                 </section>
         </>
     )

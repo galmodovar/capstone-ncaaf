@@ -35,7 +35,7 @@ export const Scoreboard = () => {
                         topScores.events?.map(
                         (scoreObject) => {
                         return <p key={`score--${scoreObject.id}`} className="weekSchedule"> 
-                        <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/> {scoreObject?.competitions[0].competitors[0].team.location} <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/> {scoreObject?.competitions[0].competitors[1].team.location} </p>
+                        <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList" alt="" /> {scoreObject?.competitions[0].competitors[0].team.location} <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/> {scoreObject?.competitions[0].competitors[1].team.location} </p>
                         }
                         )
                     }
@@ -58,9 +58,9 @@ export const Scoreboard = () => {
                     {
                         pastScores?.events?.map(
                         (scoreObject) => {
-                        return <p key={`score--${scoreObject.id}`} className="weekSchedule"> <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/>   
+                        return <p key={`score--${scoreObject.id}`} className="weekSchedule"> <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList" alt =""/>   
                         {scoreObject?.competitions[0].competitors[0].team.name} <b>{scoreObject?.competitions[0].competitors[0].score}</b> 
-                        <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/>
+                        <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList" alt=""/>
                         {scoreObject?.competitions[0].competitors[1].team.name} <b>{scoreObject?.competitions[0].competitors[1].score}</b></p>
                         })
                     }

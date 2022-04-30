@@ -65,7 +65,7 @@ export const Teams = () => {
               teamList?.teams?.map(
                  (teamObject ) => {
                      
-                    return <p key={`team--${teamObject.team.id}`} className="teams">  <img src={teamObject.team.logos[1].href} className="teamsList"/> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary} 
+                    return <p key={`team--${teamObject.team.id}`} className="teams">  <img src={teamObject.team.logos[1].href} className="teamsList" alt =""/> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary} 
                              <button onClick={() => {addTeam(teamObject.team.id)}} className="team-btn">Add Team</button> </p>
                     }
                 )

@@ -30,7 +30,6 @@ span {
 }
 
   .scheduleContainer--main {
-    margin:4px, 4px;
     padding:4px;
     background: linear-gradient(180deg, black, transparent);
     min-width: 70%;
@@ -57,3 +56,14 @@ span {
     display: flex;
     flex-direction: column;
   }
+
+.teamScores {
+  display: grid;
+}
+
+.teamNames {
+  display: contents;
+}
+b {
+  margin-left: 1rem;
+}
