@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { getAllNews, getAllRankings, getAllScores } from "../ApiManager"
+import { getAllNews, getAllRankings } from "../ApiManager"
+import { MainScores } from "./MainScores"
 import "./News.css"
 
 export const MainFeed = () => {
     const [headlines, updateHeadlines] = useState([])
-    const [topScores, updateScores] = useState([])
     const [rankings, updateRankings] = useState([])
 
     useEffect(
@@ -13,15 +13,6 @@ export const MainFeed = () => {
             getAllNews()
                 .then((data) => {
                     updateHeadlines(data)
-                })
-        },
-        []
-    )
-    useEffect(
-        () => {
-            getAllScores()
-                .then((data) => {
-                    updateScores(data)
                 })
         },
         []
@@ -38,20 +29,9 @@ export const MainFeed = () => {
     )
     return (
         <>
-            <h3> Week {topScores.week?.number} Latest Scores:</h3>
             <main className="main">
-                <section className="scheduleContainer--main">
-                    {
-                        topScores.events?.map(
-                        (scoreObject) => {
-                            return <p key={`score--${scoreObject.id}`} className="weekSchedule"> <img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList"/>   
-                            {scoreObject?.competitions[0].competitors[0].team.name} <b>{scoreObject?.competitions[0].competitors[0].score}</b> 
-                            <img src={scoreObject?.competitions[0].competitors[1].team.logo} className="teamsList"/>
-                            {scoreObject?.competitions[0].competitors[1].team.name} <b>{scoreObject?.competitions[0].competitors[1].score}</b></p>
-                            }
-                        )
-                    }
-                </section>
+                <MainScores />
+                
                 <section className="newsContainer">
                     <h3> Latest Headlines:</h3>
                     {
