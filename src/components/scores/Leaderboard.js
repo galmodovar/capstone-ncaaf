@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getMyTeams, getAllLocalTeams, getAllScores } from "../ApiManager";
+import { getMyTeams, getAllLocalTeams, getAllScores, getAllUsers } from "../ApiManager";
 import "./Leaderboard.css";
 
 export const LeaderBoard = () => {
@@ -21,11 +21,7 @@ export const LeaderBoard = () => {
     getMyTeams()
       .then(
         (data) => {
-          const currentWeek = data.filter(newData => {
-            if (newData.week === week) {
-              return newData
-            }
-          })
+          const currentWeek = data.filter(newData => newData.week === week)
           setTeams(currentWeek)
         })
   },
@@ -33,21 +29,17 @@ export const LeaderBoard = () => {
   )
   useEffect(() => {
     getAllLocalTeams().then((data) => {
-      const currentWeek = data.filter(newData => {
-        if (newData.week === week) {
-          return newData
-        }
-      })
+      const currentWeek = data.filter(newData => newData.week === week)
       setLocalTeams(currentWeek);
     });
   }, [week]);
+
   useEffect(() => {
-    localTeamsList?.find((user) => {
-      if (user.userId === parseInt(userId)) {
-        setUser(user);
-      }
-    });
-  }, [localTeamsList]);
+    getAllUsers().then(
+      (data) => setUser(data.find(user => user.id === parseInt(userId)))
+    )
+  }, [userId]);
+
   useEffect(() => {
     getAllScores().then(
       (data) => {
@@ -125,12 +117,12 @@ export const LeaderBoard = () => {
       item.map((a) => {
         localTeamScores?.filter((team) => {
           if (parseInt(team.id) === a.teamId) {
-            let arr = {};
-            arr.id = a.userId;
-            arr.name = a.user.name;
-            arr.teamId = a.teamId;
-            arr.score = parseInt(team.score);
-            score.push(arr);
+            let obj = {};
+            obj.id = a.userId;
+            obj.name = a.user.name;
+            obj.teamId = a.teamId;
+            obj.score = parseInt(team.score);
+            score.push(obj);
           }
         });
       })
@@ -183,12 +175,12 @@ export const LeaderBoard = () => {
         
         
         <section className="myTeamContainer">
-          <h2>{currentUser?.user.name}'s Score</h2>
+          <h2>{currentUser?.name}'s Score</h2>
           {userTeamScores?.map((teamObject) => {
             return (
               <p key={`team--${teamObject.team.id}`} className="teams">
                 {" "}
-                <img src={teamObject.team.logo} className="teamsList" />
+                <img src={teamObject.team.logo} className="teamsList" alt="" />
                 {teamObject.team.displayName} <b>{teamObject.score}</b>
               </p>
             );
@@ -203,7 +195,7 @@ export const LeaderBoard = () => {
           {localTeamScores?.map((teamObject) => {
             return (
               <p key={`team--${teamObject.team.id}`}>
-                <img src={teamObject.team.logo} className="teamsList" />
+                <img src={teamObject.team.logo} className="teamsList" alt="" />
                 {teamObject.team.displayName} <b>{teamObject.score}</b>
               </p>
             );

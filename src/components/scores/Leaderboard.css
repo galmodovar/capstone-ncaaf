@@ -1,5 +1,6 @@
 .myTeamContainer, .localTeamContainer, .leaderContainer {
-    background: linear-gradient(180deg, black, transparent);
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
     margin-left: 5rem;
     margin-top: 2rem;
     width: 20%;

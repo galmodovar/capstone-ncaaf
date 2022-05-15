@@ -38,11 +38,7 @@ export const MyTeams = () => {
                     () => getMyTeams())
                 .then(
                     (data) => {
-                        const currentWeek = data.filter(newData => {
-                            if (newData.week === week) {
-                                return newData
-                            }
-                        })
+                        const currentWeek = data.filter(newData => newData.week === week) 
                         setTeams(currentWeek)
                     })
         },
@@ -144,7 +140,7 @@ export const MyTeams = () => {
                         userTeams?.map(
                             (teamObject) => {
 
-                                return <p key={`team--${teamObject.team.id}`} className="myTeams">  <img src={teamObject.team.logos[1].href} className="teamsList" /> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
+                                return <p key={`team--${teamObject.team.id}`} className="myTeams">  <img src={teamObject.team.logos[1].href} className="teamsList" alt="" /> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
                                     <button onClick={() => {
                                         const team = myTeams.find(team => {
                                             if (team.teamId === parseInt(teamObject.team.id)) {
@@ -163,7 +159,7 @@ export const MyTeams = () => {
                     {
                         userTeamScores?.map(
                             (teamObject) => {
-                                return <p key={`team--${teamObject.id}`} className="teams">  <img src={teamObject.team.logo} className="teamsList" /> {teamObject.team.displayName} {teamObject.score} </p>
+                                return <p key={`team--${teamObject.id}`} className="teams">  <img src={teamObject.team.logo} className="teamsList" alt ="" /> {teamObject.team.displayName} {teamObject.score} </p>
                             }
                         )
                     }

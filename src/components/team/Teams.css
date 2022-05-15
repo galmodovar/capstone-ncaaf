@@ -1,12 +1,14 @@
 .teamsList {
-    max-height: 2.5rem ;
+    max-height: 2.5rem;
+    margin-left: 1rem;
 }
 
 .teamContainer {
     display: grid;
     grid-template-columns: repeat(5, 325px);
     margin: 0 2.5rem;
-    background: linear-gradient(180deg, black, transparent);
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
     height: 810px;
     overflow-x: hidden;
     overflow-y: auto;

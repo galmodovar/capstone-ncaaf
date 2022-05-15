@@ -2,6 +2,9 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
+    margin-bottom: 1rem;
 }
 
 .navbar__item {
@@ -19,7 +22,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(1deg, black, transparent)
   }
   
   li {
@@ -28,7 +30,7 @@ ul {
   
   li a {
     display: block;
-    color: white;
+    color: #cfcd96;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;

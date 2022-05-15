@@ -6,7 +6,8 @@
 }
 
 .teamsGameWeek, .teamsGameScore {
-    background: linear-gradient(175deg, black, transparent);
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
     margin-left: 10rem;
     margin-top: 2rem;
     width: 30%;

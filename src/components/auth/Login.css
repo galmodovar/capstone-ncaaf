@@ -5,7 +5,7 @@ h1 {
     
 }
 
-h2 {
+h2, a {
     margin-left: 1rem;
 }
 
@@ -80,6 +80,4 @@ fieldset {
     min-height: 5rem;
 }
 
-a {
-    font-style: none;
-}
+

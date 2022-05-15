@@ -44,7 +44,7 @@ export const MainNews = () => {
             <h3> Latest AP Poll Rankings:</h3>
                 <div className="rankings">
                     {rankings?.map((rankingObject, i) => {
-                        return <p key={`ranking--${i}`} className="teamRankings"> #{rankingObject.current} <img src={rankingObject.team.logo} className="teamsList"/> {rankingObject.team.nickname} {rankingObject.recordSummary} </p>
+                        return <p key={`ranking--${i}`} className="teamRankings"> #{rankingObject.current} <img src={rankingObject.team.logo} className="teamsList" alt =""/> {rankingObject.team.nickname} {rankingObject.recordSummary} </p>
                         })}
                 </div>
         </section>            

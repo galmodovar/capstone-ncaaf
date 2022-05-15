@@ -3,14 +3,16 @@
 }
 
 .newsContainer {
-    background: linear-gradient(180deg, black, transparent);
+    /*background: linear-gradient(180deg, black, transparent);*/
     height: fit-content;
-    height: 720px;
+    height: 710px;
     overflow-x: hidden;
     overflow-y: auto;
     text-align:justify;
     margin: 0 1rem;
-    padding: .5rem 1rem
+    padding: .5rem 1rem;
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
 }
 
 .teamRankings {
@@ -31,12 +33,15 @@ span {
 
   .scheduleContainer--main {
     padding:4px;
-    background: linear-gradient(180deg, black, transparent);
-    min-width: 70%;
-    height: 710px;
+    /*background: linear-gradient(180deg, black, transparent);*/
+    min-width: 65%;
+    height: 718px;
     overflow-x: hidden;
     overflow-y: auto;
     text-align:justify;
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
+    margin-left: 1rem;
   }
 
   .newsContainer::-webkit-scrollbar {

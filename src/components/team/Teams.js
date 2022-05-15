@@ -53,20 +53,20 @@ export const Teams = () => {
        
     }
         
-
-
-
     return (
         <>
             <main className="mainContainer">
             <section className="teamContainer">
             <h3 className="teamList"> Team List:</h3>
            { 
-              teamList?.teams?.map(
-                 (teamObject ) => {
-                     
-                    return <p key={`team--${teamObject.team.id}`} className="teams">  <img src={teamObject.team.logos[1].href} className="teamsList" alt =""/> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary} 
-                             <button onClick={() => {addTeam(teamObject.team.id)}} className="team-btn">Add Team</button> </p>
+              teamList?.teams?.filter(teamObject => teamObject.team.logos[1]?.href).map((teamObject) => {
+                         return <p key={`team--${teamObject.team.id}`} className="teams">
+                             <img src={teamObject.team.logos[1]?.href} className="teamsList" alt =""/> 
+                             {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
+                             <button onClick={() => 
+                             {addTeam(teamObject.team.id)}} 
+                             className="team-btn">Add Team</button>
+                             </p>
                     }
                 )
             }

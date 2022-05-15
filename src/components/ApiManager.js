@@ -24,7 +24,7 @@ export const getAllNews = () => {
 }
 
 export const getAllTeams = () => {
-    return fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams?limit=1000&groups=80`)
+    return fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/teams?limit=1000&groups=50`)
         .then(res => res.json())
 }
 
