@@ -14,9 +14,7 @@ export const MyTeams = () => {
     useEffect(
         () => {
             getAllTeams()
-                .then((data) => {
-                    updateTeams(data.sports[0].leagues[0])
-                })
+                .then((data) => {updateTeams(data.sports[0].leagues[0])})
         },
         []
     )
@@ -110,13 +108,8 @@ export const MyTeams = () => {
     useEffect(() => {
         fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week}&limit=100`)
             .then(res => res.json())
-            .then((data) => {
-                updatePastScores(data)
-            })
+            .then((data) => {updatePastScores(data)})
     }, [week])
-
-    //const weeks = teamScores?.week?.number 
-
 
     return (
         <>
@@ -140,7 +133,9 @@ export const MyTeams = () => {
                         userTeams?.map(
                             (teamObject) => {
 
-                                return <p key={`team--${teamObject.team.id}`} className="myTeams">  <img src={teamObject.team.logos[1].href} className="teamsList" alt="" /> {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
+                                return <p key={`team--${teamObject.team.id}`} className="myTeams">
+                                    <img src={teamObject.team.logos[1].href} className="teamsList" alt="" />
+                                    {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
                                     <button onClick={() => {
                                         const team = myTeams.find(team => {
                                             if (team.teamId === parseInt(teamObject.team.id)) {
@@ -148,7 +143,8 @@ export const MyTeams = () => {
                                             }
                                         })
                                         removeTeam(team.id)
-                                    }} className="team-btn">Remove Team</button> </p>
+                                    }} className="team-btn">Remove Team</button>
+                                    </p>
                             }
                         )
                     }
@@ -159,7 +155,10 @@ export const MyTeams = () => {
                     {
                         userTeamScores?.map(
                             (teamObject) => {
-                                return <p key={`team--${teamObject.id}`} className="teams">  <img src={teamObject.team.logo} className="teamsList" alt ="" /> {teamObject.team.displayName} {teamObject.score} </p>
+                                return <p key={`team--${teamObject.id}`} className="teams">
+                                    <img src={teamObject.team.logo} className="teamsList" alt ="" />
+                                    {teamObject.team.displayName} {teamObject.score}
+                                    </p>
                             }
                         )
                     }

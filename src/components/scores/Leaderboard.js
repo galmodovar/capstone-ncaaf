@@ -19,14 +19,14 @@ export const LeaderBoard = () => {
 
   useEffect(() => {
     getMyTeams()
-      .then(
-        (data) => {
+      .then((data) => {
           const currentWeek = data.filter(newData => newData.week === week)
           setTeams(currentWeek)
         })
   },
     [week]
   )
+
   useEffect(() => {
     getAllLocalTeams().then((data) => {
       const currentWeek = data.filter(newData => newData.week === week)
@@ -35,22 +35,18 @@ export const LeaderBoard = () => {
   }, [week]);
 
   useEffect(() => {
-    getAllUsers().then(
-      (data) => setUser(data.find(user => user.id === parseInt(userId)))
-    )
+    getAllUsers().then((data) => setUser(data.find(user => user.id === parseInt(userId))))
   }, [userId]);
 
   useEffect(() => {
-    getAllScores().then(
-      (data) => {
+    getAllScores().then((data) => {
         setWeek(data.week.number);
         setWeeks(data.week.number);
       });
   }, []);
+
   useEffect(() => {
-    const events = pastScores?.events?.map(
-      (event) => event.competitions[0].competitors
-    );
+    const events = pastScores?.events?.map((event) => event.competitions[0].competitors);
     const myTeamScores = events?.filter((game) => {
       for (const a of game) {
         for (const myTeam of teamsList) {
@@ -61,10 +57,7 @@ export const LeaderBoard = () => {
       }
     });
     const scores = myTeamScores?.flat();
-    const userScores = scores?.filter(
-      (filterTeam) =>
-        !!teamsList.some((myTeam) => parseInt(filterTeam.id) === myTeam.teamId)
-    );
+    const userScores = scores?.filter((filterTeam) => !!teamsList.some((myTeam) => parseInt(filterTeam.id) === myTeam.teamId));
     setUserTeamScores(userScores);
   }, [pastScores, teamsList]);
 
@@ -78,26 +71,21 @@ export const LeaderBoard = () => {
             return a
           }
         }
-
       }
     })
     const scores = myTeamScores?.flat()
     const userScores = scores?.filter((filterTeam => !!localTeamsList.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
     setLocalTeamScores(userScores)
-
-
   }, [pastScores])
 
   useEffect(() => {
-    const scores = localTeamScores
-      ?.filter((team) => localTeamsList.includes(parseInt(team.id)))
-      .map((team) => parseInt(team.score));
+    const scores = localTeamScores?.filter((team) => localTeamsList.includes(parseInt(team.id))).map((team) => parseInt(team.score));
     setTotal(scores);
   }, [localTeamScores]);
 
   useEffect(() => {
     const score = userTeamScores?.reduce((sum, currentScore) => {
-      return sum + parseInt(currentScore.score);
+    return sum + parseInt(currentScore.score);
     }, 0);
     setTotals(score);
   }, [userTeamScores]);
@@ -132,10 +120,7 @@ export const LeaderBoard = () => {
 
   useEffect(() => {
     const totalScores = Array.from(
-      totals?.reduce(
-        (m, { name, score }) => m.set(name, (m.get(name) || 0) + score),
-        new Map()
-      ),
+      totals?.reduce((m, { name, score }) => m.set(name, (m.get(name) || 0) + score), new Map()),
       ([name, score]) => ({ name, score })
     );
     const leader = totalScores?.sort((a, b) => b.score - a.score);
