@@ -29,8 +29,8 @@ export const Scoreboard = () => {
     return (
         <>
             <main className="mainContainer">
-                    <h3> Week {topScores.week?.number} Schedule:</h3>
                 <section className="scheduleContainer">
+                <h1> Week {topScores.week?.number} Schedule:</h1>
                     {
                         topScores.events?.map(
                         (scoreObject) => {
@@ -40,8 +40,9 @@ export const Scoreboard = () => {
                         )
                     }
                 </section>
+                <section className="pastScoreContainer">
                 <section className="scoreContainer">
-                    <h3> Past Scores:</h3>
+                    <h1> Past Scores:</h1>
                      <select className="week__dropdown" onChange={
                         (event) => {
                              setWeek(parseInt(event.target.value) + 1)
@@ -54,7 +55,6 @@ export const Scoreboard = () => {
                                 }
                     </select>
                 </section>
-                <section className="pastScoreContainer">
                     {
                         pastScores?.events?.map(
                         (scoreObject) => {

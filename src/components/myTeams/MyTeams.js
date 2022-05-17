@@ -128,7 +128,7 @@ export const MyTeams = () => {
                     </select>
                 </section>
                 <section className="teamsGameWeek">
-                    <h2>My Teams</h2>
+                    <h1>My Teams</h1>
                     {
                         userTeams?.map(
                             (teamObject) => {
@@ -151,7 +151,7 @@ export const MyTeams = () => {
                     <h3>You have {myTeams.length} teams on your roster for the week.</h3>
                 </section>
                 <section className="teamsGameScore">
-                    <h2>Team Scores</h2>
+                    <h1>Team Scores</h1>
                     {
                         userTeamScores?.map(
                             (teamObject) => {

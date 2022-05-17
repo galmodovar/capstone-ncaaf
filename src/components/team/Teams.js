@@ -57,7 +57,7 @@ export const Teams = () => {
         <>
             <main className="mainContainer">
             <section className="teamContainer">
-            <h3 className="teamList"> Team List:</h3>
+            <h1 className="teamList"> Team List:</h1>
            { 
               teamList?.teams?.filter(teamObject => teamObject.team.logos[1]?.href).map((teamObject) => {
                          return <p key={`team--${teamObject.team.id}`} className="teams">

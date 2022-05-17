@@ -1,26 +1,26 @@
 .headline {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .newsContainer {
-    /*background: linear-gradient(180deg, black, transparent);*/
-    height: fit-content;
-    height: 710px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    text-align:justify;
-    margin: 0 1rem;
-    padding: .5rem 1rem;
-    background-color: rgba(10, 10, 10, 0.904);
-    background-blend-mode: overlay;
+  /*background: linear-gradient(180deg, black, transparent);*/
+  height: fit-content;
+  height: 792px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  margin: 0 1rem;
+  padding: .5rem 1rem;
+  background-color: rgba(10, 10, 10, 0.904);
+  background-blend-mode: overlay;
 }
 
 .teamRankings {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    max-inline-size: 20rem;
-    max-block-size: 2rem;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  max-inline-size: 20rem;
+  max-block-size: 2rem;
 }
 
 .mainContainer {
@@ -31,44 +31,49 @@ span {
   color: white;
 }
 
-  .scheduleContainer--main {
-    padding:4px;
-    /*background: linear-gradient(180deg, black, transparent);*/
-    min-width: 65%;
-    height: 718px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    text-align:justify;
-    background-color: rgba(10, 10, 10, 0.904);
-    background-blend-mode: overlay;
-    margin-left: 1rem;
-  }
+.scheduleContainer--main {
+  padding: 4px;
+  /*background: linear-gradient(180deg, black, transparent);*/
+  min-width: 65%;
+  height: 800px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  background-color: rgba(10, 10, 10, 0.904);
+  background-blend-mode: overlay;
+  margin-left: 1rem;
+}
 
-  .newsContainer::-webkit-scrollbar {
-    display: none;
-  }
+.newsContainer::-webkit-scrollbar {
+  display: none;
+}
 
-  .scheduleContainer--main::-webkit-scrollbar {
-    display: none;
-  }
+.scheduleContainer--main::-webkit-scrollbar {
+  display: none;
+}
 
-  .main-headline {
-    margin-left:  2px;
-    font-size: xx-small;
-  }
+.main-headline {
+  margin-left: 2px;
+  font-size: xx-small;
+}
 
-  .rankings {
-    display: flex;
-    flex-direction: column;
-  }
+.rankings {
+  display: flex;
+  flex-direction: column;
+}
 
 .teamScores {
   display: grid;
 }
 
-.teamNames {
+.main .teamNames {
   display: contents;
 }
+
+.main-page {
+  margin: 0
+}
+
 b {
   margin-left: 1rem;
 }

@@ -39,7 +39,7 @@ export const Login = () => {
                     <h1>NCAA Football</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                        <label htmlFor="inputEmail"/>
                         <input type="email"
                             onChange={evt => set(evt.target.value)}
                             className="form-control"

@@ -18,7 +18,7 @@ export const MainScores = () => {
     return (
         <>
         <section className="scheduleContainer--main">
-        <h3 className="currentWeek"> Week {topScores.week?.number} Latest Scores:</h3>
+        <h1 className="currentWeek"> Week {topScores.week?.number} Latest Scores:</h1>
         <ul className="teamScores">
             {
             topScores.events?.map(

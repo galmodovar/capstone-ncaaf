@@ -30,7 +30,7 @@ export const MainNews = () => {
     return (
         <>
         <section className="newsContainer">
-            <h3> Latest Headlines:</h3>
+            <h1> Latest Headlines:</h1>
             {headlines.articles?.map((headlineObject, i) => {
                 return <p key={`headline--${i}`}> {headlineObject.headline}
                 <Link className="main-headline"
@@ -41,7 +41,7 @@ export const MainNews = () => {
                     </p>
                 })}
             
-            <h3> Latest AP Poll Rankings:</h3>
+            <h1> Latest AP Poll Rankings:</h1>
                 <div className="rankings">
                     {rankings?.map((rankingObject, i) => {
                         return <p key={`ranking--${i}`} className="teamRankings"> #{rankingObject.current} <img src={rankingObject.team.logo} className="teamsList" alt =""/> {rankingObject.team.nickname} {rankingObject.recordSummary} </p>

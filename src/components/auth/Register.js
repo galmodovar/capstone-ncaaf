@@ -54,19 +54,20 @@ export const Register = (props) => {
             </dialog>
 
             <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for NCAA</h1>
+                <h1 className="h3 mb-3 font-weight-normal">NCAA Football</h1>
+                <h2>Please Register to use the app</h2>
                 <fieldset>
-                    <label htmlFor="name"> Full Name </label>
+                    <label htmlFor="name"/> 
                     <input onChange={updateCustomer}
                            type="text" id="name" className="form-control"
                            placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="email"> Email address </label>
+                    <label htmlFor="email"/>
                     <input onChange={updateCustomer} type="email" id="email" className="form-control" placeholder="Email address" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="password"> Password </label>
+                    <label htmlFor="password"/>
                     <input onChange={updateCustomer} type="text" id="password" className="form-control" placeholder="Password" required />
                 </fieldset>
                 <fieldset>

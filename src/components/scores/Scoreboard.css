@@ -1,13 +1,20 @@
-.scoreContainer {
-    margin-left: 2rem
-}
 
 .scheduleContainer {
     margin-top: 2rem;
     column-count: 2;
-    background: linear-gradient(180deg, black, transparent);
+    height: fit-content;
+    height: 725px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
+.scheduleContainer::-webkit-scrollbar {
+    display: none;
+  }
 .weekSchedule {
     margin: 1rem 4rem 1rem 2rem;
     display: flex;
@@ -19,10 +26,19 @@
 
 .mainContainer {
     display: flex;
+    justify-content: space-around;
 }
 
 .pastScoreContainer {
     margin-top: 2rem;
     column-count: 2;
-    background: linear-gradient(180deg, black, transparent);
+    background-color: rgba(10, 10, 10, 0.904);
+    background-blend-mode: overlay;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+h3 {
+    margin-left: 1rem;
+    width: 100%
 }
