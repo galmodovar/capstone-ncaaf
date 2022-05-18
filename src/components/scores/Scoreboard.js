@@ -44,18 +44,20 @@ export const Scoreboard = () => {
                 </section>
                 <section className="pastScoreContainer">
                 <section className="scoreContainer">
-                    <h1> Past Scores:</h1>
+                    <h1> Past Scores:
+
                      <select className="week__dropdown" onChange={
-                        (event) => {
+                         (event) => {
                              setWeek(parseInt(event.target.value) + 1)
-                             }}>
+                            }}>
                                  <option>Choose a week:</option>
                                  {
-                                 Array.from(Array(weeks).keys()).map(week => {
-                                     return <option value={week++} key={`week--${week++}`}>Week:{week++}</option>
-                                    })
-                                }
+                                     Array.from(Array(weeks).keys()).map(week => {
+                                         return <option value={week++} key={`week--${week++}`}>Week:{week++}</option>
+                                        })
+                                    }
                     </select>
+                    </h1>
                 </section>
                     {
                         pastScores?.events?.map(

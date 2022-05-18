@@ -27,59 +27,49 @@ export const MyTeams = () => {
 
     useEffect(
         () => {
-            getAllScores()
-                .then(
-                    () => getMyTeams())
-                .then(
-                    (data) => {
-                        const currentWeek = data.filter(newData => newData.week === week) 
-                        setTeams(currentWeek)
+            // GET request using fetch to return user specific teams from local db and filter those from current week only 
+           getMyTeams()
+                .then((data) => {
+                        const currentWeekTeams = data.filter(newData => newData.week === week) 
+                        setTeams(currentWeekTeams)
                     })
         },
         [week]
     )
 
     useEffect(() => {
+        // filtering ESPN's list of teams using local db user teams by matching id
         const allTeams = teamList?.teams?.filter((filterTeam) => !!myTeams.some(myTeam => parseInt(filterTeam.team.id) === myTeam.teamId))
         setUserTeams(allTeams)
-    }, [myTeams])
+    }, [myTeams, teamList])
 
     useEffect(() => {
         const events = pastScores?.events?.map(event => event.competitions[0].competitors)
-        const myTeamScores = events?.filter((game) => {
-            for (const a of game) {
+        const myTeamScores = events?.filter((games) => {
+            // filtering through list of games searching for a match of local team db id and espn team id
+            // if there's a match return game which includes an array of 2 teams including matching team
+            for (const game of games) {
                 for (const myTeam of myTeams) {
-                    if (parseInt(a.team.id) === myTeam.teamId) {
-                        return a
+                    if (parseInt(game.team.id) === myTeam.teamId) {
+                        return game
                     }
                 }
 
             }
         })
+        // flatten the array and return teams with an attribute of score for the current week
         const scores = myTeamScores?.flat()
+        // filtering array using local db team id
         const userScores = scores?.filter((filterTeam => !!myTeams.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
         setUserTeamScores(userScores)
 
-    }, [myTeams, week])
+    }, [myTeams, week, pastScores])
 
     useEffect(() => {
-        const events = pastScores?.events?.map(event => event.competitions[0].competitors)
-        const myTeamScores = events?.filter((game) => {
-            for (const a of game) {
-                for (const myTeam of myTeams) {
-                    if (parseInt(a.team.id) === myTeam.teamId) {
-                        return a
-                    }
-                }
-
-            }
-        })
-        const scores = myTeamScores?.flat()
-        const userScores = scores?.filter((filterTeam => !!myTeams.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
-        setUserTeamScores(userScores)
-
-    }, [pastScores])
-
+        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week ? week : 1}&limit=100`)
+            .then(res => res.json())
+            .then((data) => {updatePastScores(data)})
+    }, [week])
 
     const removeTeam = (id) => {
         fetch(`http://localhost:8088/myTeams/${id}`, {
@@ -100,12 +90,6 @@ export const MyTeams = () => {
             }
             )
     }
-
-    useEffect(() => {
-        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week ? week : 1}&limit=100`)
-            .then(res => res.json())
-            .then((data) => {updatePastScores(data)})
-    }, [week])
 
     return (
         <>

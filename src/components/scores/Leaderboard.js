@@ -13,15 +13,14 @@ export const LeaderBoard = () => {
   const [total, setTotals] = useState(0);
   const [totalsArr, setTotalScoresArr] = useState();
   const [week, setWeek] = useState()
-  const [weeks, setWeeks] = useState()
   const [pastScores, updatePastScores] = useState([])
   const userId = localStorage.getItem("ncaaf_user");
 
   useEffect(() => {
     getMyTeams()
       .then((data) => {
-          const currentWeek = data.filter(newData => newData.week === week)
-          setTeams(currentWeek)
+          const currentWeekTeams = data.filter(newData => newData.week === week)
+          setTeams(currentWeekTeams)
         })
   },
     [week]
@@ -29,8 +28,8 @@ export const LeaderBoard = () => {
 
   useEffect(() => {
     getAllLocalTeams().then((data) => {
-      const currentWeek = data.filter(newData => newData.week === week)
-      setLocalTeams(currentWeek);
+      const currentWeekLocalTeams = data.filter(newData => newData.week === week)
+      setLocalTeams(currentWeekLocalTeams);
     });
   }, [week]);
 
@@ -39,10 +38,7 @@ export const LeaderBoard = () => {
   }, [userId]);
 
   useEffect(() => {
-    getAllScores().then((data) => {
-        setWeek(data.week.number);
-        setWeeks(data.week.number);
-      });
+    getAllScores().then((data) => { setWeek(data.week.number) });
   }, []);
 
   useEffect(() => {
@@ -147,11 +143,11 @@ export const LeaderBoard = () => {
               setWeek(parseInt(event.target.value) + 1);
             }}
           >
-            <option value>Choose a week:</option>
-            {Array.from(Array(weeks).keys()).map((week) => {
+            <option value={0}>Choose a week:</option>
+            {Array.from(Array(week).keys()).map((w) => {
               return (
-                <option value={week++} key={`week--${week++}`}>
-                  Week:{week++}
+                <option value={w++} key={`week--${w++}`}>
+                  Week:{w++}
                 </option>
               );
             })}
