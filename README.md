@@ -5,7 +5,7 @@
 
 This app is similar to a traditional fantasy football app only instead of choosing players for a week, users can add specific college football teams to their roster for the week.  It will add the score from each team on the roster and come up with a total score which will then be shown on the weekly leaderboard to see how the user compares to others.
 
-It was built with React and CSS and uses ESPN's external API to bring in current scores, schedules, headlines and rankings.
+It was built with React, Javascript and CSS and uses ESPN's external API to bring in current scores, schedules, headlines and rankings.
 
 It is also the first app I thought up myself start to finish with the aid of the instructors as work for the front-end part of NSS' web dev program.
 
