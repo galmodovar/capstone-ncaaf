@@ -9,22 +9,18 @@ export const MyTeams = () => {
     const [userTeamScores, setUserTeamScores] = useState([])
     const [pastScores, updatePastScores] = useState([])
     const [week, setWeek] = useState()
-    const [weeks, setWeeks] = useState()
 
     useEffect(
         () => {
             getAllTeams()
-                .then((data) => {updateTeams(data.sports[0].leagues[0])})
+                .then((data) => { updateTeams(data.sports[0].leagues[0]) })
         },
         []
     )
     useEffect(
         () => {
             getAllScores()
-                .then((data) => {
-                    setWeek(data.week.number);
-                    setWeeks(data.week.number)
-                })
+                .then((data) => { setWeek(data.week.number) })
         },
         []
     )
@@ -106,7 +102,7 @@ export const MyTeams = () => {
     }
 
     useEffect(() => {
-        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week}&limit=100`)
+        fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week ? week : 1}&limit=100`)
             .then(res => res.json())
             .then((data) => {updatePastScores(data)})
     }, [week])
@@ -119,10 +115,10 @@ export const MyTeams = () => {
                         (event) => {
                             setWeek(parseInt(event.target.value) + 1)
                         }}>
-                        <option>Choose a week:</option>
+                        <option value={0}>Choose a week:</option>
                         {
-                            Array.from(Array(weeks).keys()).map(week => {
-                                return <option value={week++} key={`week--${week++}`}>Week:{week++}</option>
+                            Array.from(Array(week).keys()).map(w => {
+                                return <option value={w++} key={`week--${w++}`}>Week:{w++}</option>
                             })
                         }
                     </select>

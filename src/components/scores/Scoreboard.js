@@ -9,6 +9,7 @@ export const Scoreboard = () => {
     
     useEffect(
         () => {
+            // function that makes a GET request using fetch call to return current weeks scoreboard
             getAllScores()
                 .then((data) => {
                     updateScores(data)
@@ -17,6 +18,7 @@ export const Scoreboard = () => {
         []
     )
     useEffect( () => {
+        // simple GET request using fetch call that will return scoreboard for week selected from dropdown
         fetch(`http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?week=${week}`)
             .then(res => res.json())
             .then((data) => {

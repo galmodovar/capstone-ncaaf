@@ -7,10 +7,9 @@ export const MainScores = () => {
 
     useEffect(
         () => {
+            // function that makes a GET request using fetch call to return current weeks scoreboard
             getAllScores()
-                .then((data) => {
-                    updateScores(data)
-                })
+                .then((data) => { updateScores(data) })
         },
         []
     )
@@ -22,7 +21,7 @@ export const MainScores = () => {
         <ul className="teamScores">
             {
             topScores.events?.map(
-                        (scoreObject, i) => {
+                        (scoreObject) => {
                             return <>
                             <li key={`score--${scoreObject.id}`} className="weekSchedule"> 
                             <p className="teamNames"><img src={scoreObject?.competitions[0].competitors[0].team.logo} className="teamsList" alt=""/>   

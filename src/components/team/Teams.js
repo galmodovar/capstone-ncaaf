@@ -3,41 +3,36 @@ import { getAllTeams, getAllScores } from "../ApiManager"
 import "./Teams.css"
 
 export const Teams = () => {
-    const [allTeams, updateTeams] = useState()
     const [teamList, setTeams] = useState([])
-    const [week, updateScores] = useState()
+    const [week, updateWeek] = useState()
 
     useEffect(
         () => {
+            // GET request using fetch to return array of NCAAF teams 
             getAllTeams()
-                .then((data) => {
-                    updateTeams(data)
-                })
+                .then((data) => { setTeams(data.sports[0].leagues[0]) })
         },
         []
     )
-
+    
     useEffect(
         () => {
+            // GET request using fetch to return current scores
+            // which includes current week, then updates week state to be used in addTeam function
             getAllScores()
-                .then((data) => {
-                    updateScores(data.week)
-                })
+                .then((data) => { updateWeek(data.week.number) })
         },
         []
     )
 
-     useEffect(
-         () => {
-            setTeams(allTeams?.sports[0].leagues[0])
-    },
-         [allTeams]
-     )
-
+     
+     // addTeam function creates a new team object for the week added 
+     // saves the ESPN team id passed in as a param along with the user who added team
+     // sends a POST request using a fetch call to save it to local db
      const addTeam = (id) => {
         const newTeam = {
             userId: parseInt(localStorage.getItem("ncaaf_user")),
-            week: week.number,
+            week: week,
             teamId: parseInt(id),
         
         }
@@ -57,7 +52,7 @@ export const Teams = () => {
         <>
             <main className="mainContainer">
             <section className="teamContainer">
-            <h1 className="teamList"> Team List:</h1>
+            <h1 className="teamList">Team List:</h1>
            { 
               teamList?.teams?.filter(teamObject => teamObject.team.logos[1]?.href).map((teamObject) => {
                          return <p key={`team--${teamObject.team.id}`} className="teams">
