@@ -72,7 +72,7 @@ export const LeaderBoard = () => {
     const scores = myTeamScores?.flat()
     const userScores = scores?.filter((filterTeam => !!localTeamsList.some(myTeam => parseInt(filterTeam.id) === myTeam.teamId)))
     setLocalTeamScores(userScores)
-  }, [pastScores])
+  }, [pastScores, localTeamsList])
 
   useEffect(() => {
     const scores = localTeamScores?.filter((team) => localTeamsList.includes(parseInt(team.id))).map((team) => parseInt(team.score));
