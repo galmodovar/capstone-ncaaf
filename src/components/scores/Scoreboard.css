@@ -2,14 +2,14 @@
 .scheduleContainer {
     margin-top: 2rem;
     column-count: 2;
-    height: fit-content;
-    height: 725px;
+    height: 705px;
     overflow-x: hidden;
     overflow-y: auto;
     background-color: rgba(10, 10, 10, 0.904);
     background-blend-mode: overlay;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    max-width: 45%;
 }
 
 .scheduleContainer::-webkit-scrollbar {
@@ -40,6 +40,7 @@
     background-blend-mode: overlay;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    max-width: 52%;
 }
 
 h3 {

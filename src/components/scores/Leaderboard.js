@@ -125,7 +125,7 @@ export const LeaderBoard = () => {
 
   useEffect(() => {
     fetch(
-      `http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week}&limit=100`
+      `http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&week=${week ? week : 1}&limit=100`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -184,9 +184,9 @@ export const LeaderBoard = () => {
         </section>
         <section className="leaderContainer">
           <h2>LeaderBoard</h2>
-          {totalsArr?.map((team) => {
+          {totalsArr?.map((team, i) => {
             return (
-              <p>
+              <p key={`team--${i}`}>
                 {team.name} {team.score}
               </p>
             );
