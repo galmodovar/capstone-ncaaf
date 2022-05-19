@@ -25,6 +25,10 @@ fieldset {
     text-align: left;
 }
 
+.form--login h2 {
+    color: #495057;
+}
+
 .form--login > fieldset > input[type="email"] {
     width: 25em;
 }
