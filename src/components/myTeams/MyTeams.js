@@ -80,11 +80,7 @@ export const MyTeams = () => {
                 fetch(`http://localhost:8088/myTeams?userId=${userId}&_expand=user`)
                     .then(res => res.json())
                     .then((data) => {
-                        const currentWeek = data.filter(newData => {
-                            if (newData.week === week) {
-                                return newData
-                            }
-                        })
+                        const currentWeek = data.filter(newData => newData.week === week)
                         setTeams(currentWeek)
                     })
             }
@@ -117,11 +113,7 @@ export const MyTeams = () => {
                                     <img src={teamObject.team.logos[1].href} className="teamsList" alt="" />
                                     {teamObject.team.displayName} {teamObject.team.record?.items[0].summary}
                                     <button onClick={() => {
-                                        const team = myTeams.find(team => {
-                                            if (team.teamId === parseInt(teamObject.team.id)) {
-                                                return team.id
-                                            }
-                                        })
+                                        const team = myTeams.find(team => (team.teamId === parseInt(teamObject.team.id)))
                                         removeTeam(team.id)
                                     }} className="team-btn">Remove Team</button>
                                     </p>
